@@ -39,9 +39,9 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
 
 def get_content_from_folder(path: str):
     result = {
-        'audio': '' | FSInputFile,
+        'audio': '',
         'description': '',
-        'photo': '' | FSInputFile,
+        'photo': '',
     }
 
     path = decode_callback_data(path)
