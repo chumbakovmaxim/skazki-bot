@@ -45,6 +45,7 @@ def get_content_from_folder(path: str):
     }
 
     path = decode_callback_data(path)
+    print('PATH get_content_from_folder', path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
             result['audio'] = FSInputFile(path=path + file, filename=file)
@@ -52,5 +53,5 @@ def get_content_from_folder(path: str):
             result['description'] = 'Text will be here!'
         if file[-3:] == 'jpg':
             result['photo'] = FSInputFile(path=path + file)
-
+    print('RESULT', get_content_from_folder)
     return result
