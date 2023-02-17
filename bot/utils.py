@@ -36,6 +36,7 @@ def decode_callback_data(callback_data: ButtonsData) -> ButtonsData:
         for folder_name in os.listdir(root_path):
             if folder_name[:3] == path_piece:
                 root_path += f'/{folder_name}'
+                print('ROOT PATH', root_path)
 
     return {
         'text': callback_data['text'],
