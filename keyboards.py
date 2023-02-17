@@ -83,24 +83,22 @@ def keyboard_constructor_sub_menu(buttons: list[ButtonsData]):
     return kb
 
 
-def keyboard_constructor_fairy_tail(buttons: dict[str, list[TopicItem]], sub_topic_number: str):
+def keyboard_constructor_fairy_tail(buttons: list[ButtonsData]):
     """
     Генерация inline клавиатуры по массиву с элементами типа KeyboardData
     :return: InlineKeyboardMarkup
     """
     markup = []
 
-    buttons = buttons[sub_topic_number]
-
     for button in buttons:
         markup.append(
             [InlineKeyboardButton(text=button['text'],
                                   callback_data=MenuCallbackFactory(action="audio",
-                                                                    value=button['callback_data']).pack()), ])
+                                                                    value=button['path']).pack()), ])
 
     markup.append([InlineKeyboardButton(text=btn.back_text,
                                         callback_data=MenuCallbackFactory(action="sub_menu",
-                                                                          value=sub_topic_number[0]).pack())])
+                                                                          value=buttons[0]['path'][:-4]).pack())])
     kb = InlineKeyboardMarkup(inline_keyboard=markup)
     return kb
 

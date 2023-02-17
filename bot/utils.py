@@ -9,10 +9,11 @@ def get_menu_folders() -> list[ButtonsData]:
     root_path = './Сказки'
     # toDo Вынести путь в переменную
     for filename in os.listdir(root_path):
-        data.append({
-            'text': filename[3:],
-            'path': f'/{filename[:3]}'
-        })
+        if filename[:1] != '.':
+            data.append({
+                'text': filename[3:],
+                'path': f'/{filename[:3]}'
+            })
     print('OUT data', data)
     return data
 
