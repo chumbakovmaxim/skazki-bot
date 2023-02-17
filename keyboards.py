@@ -53,8 +53,10 @@ def keyboard_constructor_menu(buttons: list[ButtonsData]):
     """
 
     markup = []
+    print('keyboard_constructor_menu', buttons)
     for button in buttons:
         button = decode_callback_data(button)
+        print('keyboard_constructor_menu BUTTON', button)
         print('keyboard_constructor_menu', button)
         markup.append(
             [InlineKeyboardButton(text=button['text'],
