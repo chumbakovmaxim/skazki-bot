@@ -98,7 +98,7 @@ def keyboard_constructor_fairy_tail(buttons: list[ButtonsData]):
 
     markup.append([InlineKeyboardButton(text=btn.back_text,
                                         callback_data=MenuCallbackFactory(action="sub_menu",
-                                                                          value=buttons[0]['path'][:-4]).pack())])
+                                                                          value=buttons[0]['path'][1:-4]).pack())])
     kb = InlineKeyboardMarkup(inline_keyboard=markup)
     return kb
 
