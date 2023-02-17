@@ -49,8 +49,8 @@ def get_content_from_folder(path: str):
     print('PATH get_content_from_folder', path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
-            result['audio'] = FSInputFile(path=path + file + '.mp3', filename='audio')
-            print('DAAAAA', path + file + '.mp3')
+            result['audio'] = FSInputFile(path=path + '/' + file + '.mp3', filename='audio')
+            print('DAAAAA', path + file)
         if file[-3:] == 'txt':
             result['description'] = 'Text will be here!'
         if file[-3:] == 'jpg':
