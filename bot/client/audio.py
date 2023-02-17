@@ -33,7 +33,7 @@ async def fairy_tail_handler(
     audio = media['audio']
     print(audio)
     try:
-        file = await FairyTail.get_or_none(local_file_id=fairy_tail_path)
+        file = None #await FairyTail.get_or_none(local_file_id=fairy_tail_path)
         # Если аудио уже было отправлено и есть на серверах ТГ, то отправляем файл по file_id
         if file is not None:
             await bot.send_audio(chat_id=user_id, audio=file.tg_file_id, performer='Сказки для жизни')
