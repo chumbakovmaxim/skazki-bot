@@ -24,6 +24,7 @@ async def fairy_tail_handler(
     user_id = query.from_user.id
     fairy_tail_name = 'сказка'
     # audio = FSInputFile(path=f"./audio/{fairy_tail_path}.mp3", filename=f'{fairy_tail_name}.mp3')
+    print('CALLBACK!!!', callback_data.value)
     fairy_tail_path = decode_callback_data(callback_data.value)
     media = get_content_from_folder(fairy_tail_path)
 
