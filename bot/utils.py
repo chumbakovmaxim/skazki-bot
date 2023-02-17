@@ -38,6 +38,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
 
 
 def get_content_from_folder(path: str):
+    root_path = './Сказки'
     result = {
         'audio': '',
         'description': '',
@@ -48,7 +49,7 @@ def get_content_from_folder(path: str):
     print('PATH get_content_from_folder', path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
-            result['audio'] = FSInputFile(path=path + file, filename=file)
+            result['audio'] = FSInputFile(path=path + file + '.mp3', filename='audio')
         if file[-3:] == 'txt':
             result['description'] = 'Text will be here!'
         if file[-3:] == 'jpg':
