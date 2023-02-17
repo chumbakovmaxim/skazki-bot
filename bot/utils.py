@@ -19,8 +19,7 @@ def get_menu_folders() -> list[ButtonsData]:
 
 def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     data: list[ButtonsData] = []
-    root_path = './Сказки'
-    for filename in os.listdir(root_path + decode_callback_data(path)):
+    for filename in os.listdir(decode_callback_data(path)):
         data.append({
             'text': filename[3:],
             'path': f'/{path}/{filename[:3]}'
