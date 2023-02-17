@@ -25,7 +25,7 @@ async def menu_handler(
     menu_folders = get_menu_folders()
     print(menu_folders)
     for var in menu_folders:
-        print(decode_callback_data(var))
+        decode_callback_data(var)
 
     if isinstance(message, types.Message):
         await bot.send_message(
