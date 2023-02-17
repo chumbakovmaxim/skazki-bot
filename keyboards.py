@@ -2,7 +2,6 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardBu
 from tg_types import TopicItem, ButtonsData
 import buttons_texts as btn
 from aiogram.filters.callback_data import CallbackData
-from bot.utils import decode_callback_data
 
 
 class MenuCallbackFactory(CallbackData, prefix="fmenu"):
@@ -72,7 +71,6 @@ def keyboard_constructor_sub_menu(buttons: list[ButtonsData]):
     markup = []
 
     for button in buttons:
-        print('keyboard_constructor_sub_menu', button)
         markup.append(
             [InlineKeyboardButton(text=button['text'],
                                   callback_data=MenuCallbackFactory(action="fairy_tail",
@@ -96,6 +94,7 @@ def keyboard_constructor_fairy_tail(buttons: list[ButtonsData]):
                                   callback_data=MenuCallbackFactory(action="audio",
                                                                     value=button['path']).pack()), ])
 
+    print('keyboard_constructor_fairy_tail', buttons)
     markup.append([InlineKeyboardButton(text=btn.back_text,
                                         callback_data=MenuCallbackFactory(action="sub_menu",
                                                                           value=buttons[0]['path'][1:-4]).pack())])
