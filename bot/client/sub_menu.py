@@ -25,7 +25,7 @@ async def sub_menu_handler(
     path = callback_data.value
 
     sub_menu_folders = get_sub_menu_folders(path)
-
+    print('sub_menu_folders', sub_menu_folders)
     try:
         await query.message.edit_text(text=msg.fairy_tails_message,
                                       reply_markup=keyboard_constructor_sub_menu(sub_menu_folders))
