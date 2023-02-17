@@ -4,7 +4,7 @@ from aiogram.filters import Text
 import messages as msg
 from keyboards import keyboard_constructor_menu
 import buttons_texts as btn
-from bot.utils import get_menu_folders
+from bot.utils import get_menu_folders, decode_callback_data
 
 router = Router()
 
@@ -24,6 +24,8 @@ async def menu_handler(
     user_id = message.from_user.id
     menu_folders = get_menu_folders()
     print(menu_folders)
+    for var in menu_folders:
+        print(decode_callback_data(var))
 
     if isinstance(message, types.Message):
         await bot.send_message(
