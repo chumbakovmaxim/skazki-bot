@@ -5,47 +5,39 @@ from tg_types import ButtonsData
 
 def get_menu_folders() -> list[ButtonsData]:
     data: list[ButtonsData] = []
+    root_path = './Сказки'
     # toDo Вынести путь в переменную
-    for filename in os.listdir('./Сказки'):
-        if filename[:1] != '.':
-            print(filename)
-            data.append({
-                'text': filename[1:],
-                'path': f'/{filename[:2]}'
-            })
-    print('get_menu_folders', data)
+    for filename in os.listdir(root_path):
+        data.append({
+            'text': filename[3:],
+            'path': f'/{filename[:3]}'
+        })
     return data
 
 
 def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     data: list[ButtonsData] = []
-    for filename in os.listdir('./Сказки' + path):
+    root_path = './Сказки'
+    for filename in os.listdir(root_path + path):
         data.append({
-            'text': filename[1:],
-            'path': f'/{path[:2]}/{filename[:2]}'
+            'text': filename[3:],
+            'path': f'/{path}/{filename[:3]}'
         })
     print('get_sub_menu_folders', data)
     return data
 
 
 def decode_callback_data(callback_data: ButtonsData) -> ButtonsData:
-    # из /Вн/Ле получаем ['', 'Вн', 'Ле']
-    print('IN decode_callback_data', callback_data)
-    path_array = callback_data['path'].split('/')
-    path = './Сказки'
+    root_path = './Сказки'
+    path_array = callback_data['path'][1:].split('/')
     for path_piece in path_array:
-        for filename in os.listdir(path):
-            print('filename', filename)
-            print('path_piece', path_piece)
-            if filename[2:] == path_piece and path_piece != '':
-                path += f'/{filename}'
-    print('OUT decode_callback_data', {
-        'text': callback_data['text'],
-        'path': path,
-    })
+        for folder_name in os.listdir(root_path):
+            if folder_name[:3] == path_piece:
+                root_path += f'/{folder_name}'
+
     return {
         'text': callback_data['text'],
-        'path': path,
+        'path': root_path,
     }
 
 
