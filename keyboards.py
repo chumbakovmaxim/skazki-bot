@@ -72,7 +72,6 @@ def keyboard_constructor_sub_menu(buttons: list[ButtonsData]):
     markup = []
 
     for button in buttons:
-        button = decode_callback_data(button)
         print('keyboard_constructor_sub_menu', button)
         markup.append(
             [InlineKeyboardButton(text=button['text'],

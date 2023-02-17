@@ -20,7 +20,7 @@ def get_menu_folders() -> list[ButtonsData]:
 def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     data: list[ButtonsData] = []
     root_path = './Сказки'
-    for filename in os.listdir(root_path + path):
+    for filename in os.listdir(root_path + decode_callback_data(path)):
         data.append({
             'text': filename[3:],
             'path': f'/{path}/{filename[:3]}'
@@ -29,19 +29,29 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     return data
 
 
-def decode_callback_data(callback_data: ButtonsData) -> ButtonsData:
+def decode_callback_data(path: str) -> str:
     root_path = './Сказки'
-    path_array = callback_data['path'][1:].split('/')
+    path_array = path[1:].split('/')
     for path_piece in path_array:
         for folder_name in os.listdir(root_path):
             if folder_name[:3] == path_piece:
                 root_path += f'/{folder_name}'
-                print('ROOT PATH', root_path)
 
-    return {
-        'text': callback_data['text'],
-        'path': root_path,
-    }
+    return root_path
+
+
+# def decode_callback_data(callback_data: ButtonsData) -> ButtonsData:
+#     root_path = './Сказки'
+#     path_array = callback_data['path'][1:].split('/')
+#     for path_piece in path_array:
+#         for folder_name in os.listdir(root_path):
+#             if folder_name[:3] == path_piece:
+#                 root_path += f'/{folder_name}'
+#
+#     return {
+#         'text': callback_data['text'],
+#         'path': root_path,
+#     }
 
 
 def get_fairy_tails_content(path: str) -> dict[FSInputFile | str]:
