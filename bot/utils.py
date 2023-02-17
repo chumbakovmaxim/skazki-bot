@@ -6,20 +6,19 @@ from tg_types import ButtonsData
 def get_menu_folders() -> list[ButtonsData]:
     data: list[ButtonsData] = []
     # toDo Вынести путь в переменную
-    for filename in os.listdir('./Сказки'):
+    for filename in os.listdir('Сказки'):
         print(filename)
-        if filename[0] != '.':
-            data.append({
-                'text': filename,
-                'path': f'/{filename[2:]}'
-            })
+        data.append({
+            'text': filename,
+            'path': f'/{filename[2:]}'
+        })
     print('get_menu_folders', data)
     return data
 
 
 def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     data: list[ButtonsData] = []
-    for filename in os.listdir('./Сказки' + path):
+    for filename in os.listdir('Сказки' + path):
         data.append({
             'text': filename,
             'path': f'/{path[2:]}/{filename[2:]}'
