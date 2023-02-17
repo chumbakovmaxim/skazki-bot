@@ -5,6 +5,7 @@ from magic_filter import F
 from keyboards import MenuCallbackFactory
 from db.models import FairyTail
 from bot.utils import decode_callback_data, get_content_from_folder
+
 router = Router()
 
 
@@ -25,7 +26,8 @@ async def fairy_tail_handler(
     fairy_tail_name = 'сказка'
     # audio = FSInputFile(path=f"./audio/{fairy_tail_path}.mp3", filename=f'{fairy_tail_name}.mp3')
     print('CALLBACK!!!', callback_data.value)
-    fairy_tail_path = decode_callback_data(callback_data.value)
+    fairy_tail_path = callback_data.value
+
     media = get_content_from_folder(fairy_tail_path)
 
     audio = media['audio']
