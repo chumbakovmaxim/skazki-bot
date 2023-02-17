@@ -53,5 +53,5 @@ def get_content_from_folder(path: str):
             result['description'] = 'Text will be here!'
         if file[-3:] == 'jpg':
             result['photo'] = FSInputFile(path=path + file)
-    print('RESULT', get_content_from_folder)
+    print('RESULT get_content_from_folder', result)
     return result
