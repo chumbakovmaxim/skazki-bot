@@ -33,8 +33,10 @@ async def fairy_tail_handler(
     audio = media['audio']
     print(audio)
 
-    await bot.send_photo(chat_id=user_id, photo=media['photo'], caption=media['description'])
-
+    try:
+        await bot.send_photo(chat_id=user_id, photo=media['photo'], caption=media['description'])
+    except Exception as e:
+        print(e)
     try:
         file = None #await FairyTail.get_or_none(local_file_id=fairy_tail_path)
         # Если аудио уже было отправлено и есть на серверах ТГ, то отправляем файл по file_id
