@@ -49,11 +49,11 @@ def get_content_from_folder(path: str):
     print('PATH get_content_from_folder', path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
-            result['audio'] = FSInputFile(path=path + '/' + file, filename='audio')
-            print('DAAAAA', path + file)
+            result['audio'] = FSInputFile(path=path + '/' + file, filename=file[:-4])
         if file[-3:] == 'txt':
-            result['description'] = 'Text will be here!'
+            with open(path + '/' + file) as f:
+                result['description'] = f.read()
         if file[-3:] == 'jpg':
-            result['photo'] = FSInputFile(path=path + file)
+            result['photo'] = FSInputFile(path=path + '/' + file)
     print('RESULT get_content_from_folder', result)
     return result
