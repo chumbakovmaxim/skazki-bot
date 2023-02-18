@@ -4,7 +4,7 @@ from aiogram.filters import Command, Text
 import messages as msg
 from keyboards import start_keyboard
 
-from bot.utils import get_menu_folders
+from bot.utils import get_menu_folders, get_folders_tree
 from db.models import User
 
 router = Router()
@@ -24,6 +24,7 @@ async def command_start_handler(
     user_name = message.from_user.username
 
     await User.update_or_create(tg_user_id=user_id)
+    print(get_folders_tree())
 
     await bot.send_message(
         chat_id=user_id,
