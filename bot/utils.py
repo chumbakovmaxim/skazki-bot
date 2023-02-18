@@ -148,6 +148,7 @@ async def get_folder_stat():
             for sub_menu_item in sub_menu_stat:
                 if len(sub_menu_stat) == 0: continue
                 name = get_name_from_path(decode_path(sub_menu_item.path))
+                print('8', name)
                 if name not in stat['sub_menu'].keys():
                     stat['sub_menu'][name] = 1
                 else:
@@ -158,6 +159,7 @@ async def get_folder_stat():
             for fairy_tail_item in fairy_tail_stat:
                 if len(fairy_tail_stat) == 0: continue
                 name = get_name_from_path(decode_path(fairy_tail_item.path))
+                print('12', name)
                 if name not in stat['fairy_tail'].keys():
                     stat['fairy_tail'][name] = 1
                 else:
