@@ -1,6 +1,6 @@
 import os
 from aiogram.types import FSInputFile
-from tg_types import ButtonsData, Media
+from tg_types import ButtonsData, Media, Stat
 from db.models import User, MenuStat, SubMenuStat, FairyTailStat
 
 
@@ -37,6 +37,18 @@ def encrypt_path(path: str) -> str:
     path = '/' + path
 
     return path
+
+
+def get_name_from_path(path: str) -> str:
+    """
+    Возращает имя папки из пути
+    ./Сказки/004Иное/000Взаимопомощь/001Обыкновенный блокнот
+            =>
+    Обыкновенный блокнот
+    :param path: str
+    :return: str
+    """
+    return path.split('/')[-1:][0][3:]
 
 
 def get_menu_folders() -> list[ButtonsData]:
@@ -117,17 +129,21 @@ def get_folders_tree(root_path: str = './Сказки') -> list[str]:
 
 
 async def get_folder_stat():
+    stat: list[Stat] = []
     folders_names = get_folders_tree()
     for folder_name in folders_names:
+
         if len(folder_name) == 4:
-            stat = (await MenuStat.get_or_none(path=folder_name))
-            if stat is not None:
-                print(stat.interaction_time, decode_path(stat.path))
+            menu_stat = (await MenuStat.all().filter(path=folder_name))
+            if menu_stat is not None:
+                print(menu_stat)
+
         if len(folder_name) == 8:
-            stat = (await SubMenuStat.get_or_none(path=folder_name))
-            if stat is not None:
-                print(stat.interaction_time, decode_path(stat.path))
+            sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
+            if sub_menu_stat is not None:
+                print(sub_menu_stat)
+
         if len(folder_name) == 12:
-            stat = (await FairyTailStat.get_or_none(path=folder_name))
-            if stat is not None:
-                print(stat.interaction_time, decode_path(stat.path))
+            fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
+            if fairy_tail_stat is not None:
+                print(fairy_tail_stat)
