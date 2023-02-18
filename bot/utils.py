@@ -84,7 +84,7 @@ def get_folders_tree(root_path='./Сказки') -> list[str]:
     result = []
     for filename in os.listdir(root_path):
         if filename[:1] != '.' and os.path.isdir(f'{root_path}/{filename}'):
-            result.append(f'{root_path}/{filename[:3]}'[8:])
+            result.append(f'{root_path}/{filename}')
             sub_folders = get_folders_tree(root_path + f'/{filename}')
             result += sub_folders
 
