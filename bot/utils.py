@@ -132,7 +132,7 @@ async def get_folder_stat():
     stat: Stat = {'menu': {}, 'sub_menu': {}, 'fairy_tail': {}}
     folders_names = get_folders_tree()
     for folder_name in folders_names:
-
+        print(folder_name)
         if len(folder_name) == 4:
             menu_stat = (await MenuStat.all().filter(path=folder_name))
             for menu_item in menu_stat:
