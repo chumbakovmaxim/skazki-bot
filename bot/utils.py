@@ -49,7 +49,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     for filename in os.listdir(decode_callback_data(path)):
         data.append({
             'text': filename[3:],
-            'path': f'/{path}/{filename[:3]}'
+            'path': f'{path}/{filename[:3]}'
         })
     print('get_sub_menu_folders', data)
     return data
