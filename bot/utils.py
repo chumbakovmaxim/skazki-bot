@@ -27,6 +27,8 @@ def encrypt_path(path: str) -> str:
     './Сказки/004Иное/000Взаимопомощь/001Обыкновенный блокнот'
     в закодированный путь
     /004/000/001
+    :param path: str
+    :return: str
     """
     path = path.split('/')[2:]
     for index, item in enumerate(path):
@@ -95,7 +97,13 @@ def get_content_from_folder(path: str) -> Media:
     return result
 
 
-def get_folders_tree(root_path='./Сказки') -> list[str]:
+def get_folders_tree(root_path: str = './Сказки') -> list[str]:
+    """
+    Возращает список закодированных путей
+    ['/001', '/001/003', '/001/003/001', '/001/003/004', '/001/003/000', ... ]
+    :param root_path: str
+    :return: list[str]
+    """
     result = []
     for filename in os.listdir(root_path):
         path = f'{root_path}/{filename}'
@@ -107,5 +115,8 @@ def get_folders_tree(root_path='./Сказки') -> list[str]:
     return result
 
 
-def get_folder_stat():
-    pass
+async def get_folder_stat():
+    folders_names = get_folders_tree()
+    for folder_name in folders_names:
+        if len(folder_name) == 4:
+            print(await MenuStat.get_or_none(path=folder_name))
