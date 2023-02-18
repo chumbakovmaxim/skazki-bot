@@ -23,7 +23,7 @@ class MenuStat(Model):
     class Meta:
         table = 'menu_stat'
 
-    tg_user_id = fields.BigIntField(pk=True)
+    tg_user_id = fields.BigIntField()
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
@@ -37,7 +37,7 @@ class SubMenuStat(Model):
     class Meta:
         tabel = 'sub_menu_stat'
 
-    tg_user_id = fields.BigIntField(pk=True)
+    tg_user_id = fields.BigIntField()
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
@@ -51,7 +51,7 @@ class FairyTailStat(Model):
     class Meta:
         table = 'fairy_tail_stat'
 
-    tg_user_id = fields.BigIntField(pk=True)
+    tg_user_id = fields.BigIntField()
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
