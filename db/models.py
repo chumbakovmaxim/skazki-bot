@@ -23,36 +23,39 @@ class MenuStat(Model):
     class Meta:
         table = 'menu_stat'
 
+    tg_user_id = fields.BigIntField(pk=True)
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
     @classmethod
     async def create_record(cls, tg_user_id: str | int, path: str) -> None:
         await User.update_or_create(tg_user_id=tg_user_id)
-        await cls.update_or_create(path=path)
+        await cls.update_or_create(path=path, tg_user_id=tg_user_id)
 
 
 class SubMenuStat(Model):
     class Meta:
         tabel = 'sub_menu_stat'
 
+    tg_user_id = fields.BigIntField(pk=True)
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
     @classmethod
     async def create_record(cls, tg_user_id: str | int, path: str) -> None:
         await User.update_or_create(tg_user_id=tg_user_id)
-        await cls.update_or_create(path=path)
+        await cls.update_or_create(path=path, tg_user_id=tg_user_id)
 
 
 class FairyTailStat(Model):
     class Meta:
         table = 'fairy_tail_stat'
 
+    tg_user_id = fields.BigIntField(pk=True)
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)
 
     @classmethod
     async def create_record(cls, tg_user_id: str | int, path: str) -> None:
         await User.update_or_create(tg_user_id=tg_user_id)
-        await cls.update_or_create(path=path)
+        await cls.update_or_create(path=path, tg_user_id=tg_user_id)
