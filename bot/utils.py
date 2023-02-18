@@ -4,7 +4,7 @@ from tg_types import ButtonsData, Media
 from db.models import User, MenuStat, SubMenuStat, FairyTailStat
 
 
-def decode_callback_data(path: str) -> str:
+def decode_path(path: str) -> str:
     """
     Расшифровывает строку типа /000/000/000 в полноценный путь ./Сказки/000Семья/000Дети/000Дело не в точках
     :param path: str
@@ -19,6 +19,21 @@ def decode_callback_data(path: str) -> str:
                 root_path += f'/{folder_name}'
     print('decode_callback_data', root_path)
     return root_path
+
+
+def encrypt_path(path: str) -> str:
+    """
+    Превращает путь вида
+    './Сказки/004Иное/000Взаимопомощь/001Обыкновенный блокнот'
+    в закодированный путь
+    /004/000/001
+    """
+    path = path.split('/')[2:]
+    for index, item in enumerate(path):
+        path[index] = item[:3]
+    path = '/'.join(path)
+    path = '/' + path
+    return path
 
 
 def get_menu_folders() -> list[ButtonsData]:
@@ -46,7 +61,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
        :return: list[ButtonsData]
     """
     data: list[ButtonsData] = []
-    for filename in os.listdir(decode_callback_data(path)):
+    for filename in os.listdir(decode_path(path)):
         data.append({
             'text': filename[3:],
             'path': f'{path}/{filename[:3]}'
@@ -67,7 +82,7 @@ def get_content_from_folder(path: str) -> Media:
         'photo': '',
     }
 
-    path = decode_callback_data(path)
+    path = decode_path(path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
             result['audio'] = FSInputFile(path=path + '/' + file, filename=file[:-4])
@@ -83,8 +98,9 @@ def get_content_from_folder(path: str) -> Media:
 def get_folders_tree(root_path='./Сказки') -> list[str]:
     result = []
     for filename in os.listdir(root_path):
-        if filename[:1] != '.' and os.path.isdir(f'{root_path}/{filename}'):
-            result.append(f'{root_path}/{filename}')
+        path = f'{root_path}/{filename}'
+        if filename[:1] != '.' and os.path.isdir(path):
+            result.append(encrypt_path(path))
             sub_folders = get_folders_tree(root_path + f'/{filename}')
             result += sub_folders
 
