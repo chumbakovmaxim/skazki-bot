@@ -1,4 +1,4 @@
-from aiogram import Router, Bot, types
+from aiogram import Router, types
 from aiogram.filters import Text
 
 import messages as msg

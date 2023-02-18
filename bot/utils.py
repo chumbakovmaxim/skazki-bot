@@ -4,6 +4,12 @@ from tg_types import ButtonsData, Media
 
 
 def decode_callback_data(path: str) -> str:
+    """
+    Расшифровывает строку типа /000/000/000 в полноценный путь ./Сказки/000Семья/000Дети/000Дело не в точках
+    :param path: str
+    :return: str
+    """
+
     root_path = './Сказки'
     path_array = path[1:].split('/')
     for path_piece in path_array:
@@ -15,6 +21,10 @@ def decode_callback_data(path: str) -> str:
 
 
 def get_menu_folders() -> list[ButtonsData]:
+    """
+    Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в './Сказки'
+    :return: list[ButtonsData]
+    """
     data: list[ButtonsData] = []
     root_path = './Сказки'
     # toDo Вынести путь в переменную
@@ -28,6 +38,11 @@ def get_menu_folders() -> list[ButtonsData]:
 
 
 def get_sub_menu_folders(path: str) -> list[ButtonsData]:
+    """
+       Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в './Сказки/.../'
+       :param path: str
+       :return: list[ButtonsData]
+    """
     data: list[ButtonsData] = []
     for filename in os.listdir(decode_callback_data(path)):
         data.append({
@@ -38,6 +53,11 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
 
 
 def get_content_from_folder(path: str) -> Media:
+    """
+    Выводит изображение, описание сказки и аудиофайл со сказкой в формате Media.
+    :param path: str
+    :return: Media
+    """
     result = {
         'audio': '',
         'description': '',

@@ -3,7 +3,6 @@ from aiogram import Router, types
 import messages as msg
 from bot.utils import get_sub_menu_folders
 from keyboards import keyboard_constructor_fairy_tail
-import buttons_texts as btn
 from magic_filter import F
 
 from keyboards import MenuCallbackFactory
@@ -22,9 +21,9 @@ async def fairy_tail_handler(
     :param callback_data: MenuCallbackFactory
     :return: None
     """
+
     path = callback_data.value
     fairy_tail_path = get_sub_menu_folders(path)
-
 
     try:
         await query.message.edit_text(text=msg.fairy_tails_message,

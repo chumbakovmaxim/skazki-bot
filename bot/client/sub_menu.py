@@ -2,7 +2,6 @@ from aiogram import Router, types
 
 import messages as msg
 from keyboards import keyboard_constructor_sub_menu
-import buttons_texts as btn
 from magic_filter import F
 
 from keyboards import MenuCallbackFactory

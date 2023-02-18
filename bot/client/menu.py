@@ -4,7 +4,7 @@ from aiogram.filters import Text
 import messages as msg
 from keyboards import keyboard_constructor_menu
 import buttons_texts as btn
-from bot.utils import get_menu_folders, decode_callback_data
+from bot.utils import get_menu_folders
 
 router = Router()
 

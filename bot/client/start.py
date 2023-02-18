@@ -19,8 +19,8 @@ async def command_start_handler(
     This handler receive messages with `/start` command
     """
     get_menu_folders()
-    user_id = message.from_user.id  # type: ignore
-    user_name = message.from_user.username  # type: ignore
+    user_id = message.from_user.id
+    user_name = message.from_user.username
 
     await bot.send_message(
         chat_id=user_id,
