@@ -132,20 +132,23 @@ async def get_folder_stat():
     stat: Stat = {'menu': {}, 'sub_menu': {}, 'fairy_tail': {}}
     folders_names = get_folders_tree()
     for folder_name in folders_names:
-        print(folder_name)
-        if len(folder_name) == 4:
-            menu_stat = (await MenuStat.all().filter(path=folder_name))
-            for menu_item in menu_stat:
-                if len(menu_stat) == 0: continue
-                name = get_name_from_path(decode_path(menu_item.path))
-                if name not in stat['menu'].keys():
-                    stat['menu'][name] = 1
-                else:
-                    stat['menu'][name] += 1
+        # print(folder_name)
+        # if len(folder_name) == 4:
+        #     menu_stat = (await MenuStat.all().filter(path=folder_name))
+        #     for menu_item in menu_stat:
+        #         if len(menu_stat) == 0: continue
+        #         name = get_name_from_path(decode_path(menu_item.path))
+        #         if name not in stat['menu'].keys():
+        #             stat['menu'][name] = 1
+        #         else:
+        #             stat['menu'][name] += 1
 
         if len(folder_name) == 8:
+            print('folder_name', folder_name)
             sub_menu_stat = (await MenuStat.all().filter(path=folder_name))
+            print('sub_menu_stat', sub_menu_stat)
             for sub_menu_item in sub_menu_stat:
+                print('sub_menu_item', sub_menu_item)
                 if len(sub_menu_stat) == 0: continue
                 name = get_name_from_path(decode_path(sub_menu_item.path))
                 print('8', name)
@@ -154,16 +157,16 @@ async def get_folder_stat():
                 else:
                     stat['sub_menu'][name] += 1
 
-        if len(folder_name) == 12:
-            fairy_tail_stat = (await MenuStat.all().filter(path=folder_name))
-            for fairy_tail_item in fairy_tail_stat:
-                if len(fairy_tail_stat) == 0: continue
-                name = get_name_from_path(decode_path(fairy_tail_item.path))
-                print('12', name)
-                if name not in stat['fairy_tail'].keys():
-                    stat['fairy_tail'][name] = 1
-                else:
-                    stat['fairy_tail'][name] += 1
+        # if len(folder_name) == 12:
+        #     fairy_tail_stat = (await MenuStat.all().filter(path=folder_name))
+        #     for fairy_tail_item in fairy_tail_stat:
+        #         if len(fairy_tail_stat) == 0: continue
+        #         name = get_name_from_path(decode_path(fairy_tail_item.path))
+        #         print('12', name)
+        #         if name not in stat['fairy_tail'].keys():
+        #             stat['fairy_tail'][name] = 1
+        #         else:
+        #             stat['fairy_tail'][name] += 1
 
     print(stat)
         # if len(folder_name) == 8:
