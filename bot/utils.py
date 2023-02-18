@@ -109,7 +109,7 @@ def get_folders_tree(root_path: str = './Сказки') -> list[str]:
         path = f'{root_path}/{filename}'
         if filename[:1] != '.' and os.path.isdir(path):
             result.append(encrypt_path(path))
-            sub_folders = get_folders_tree(root_path + f'/{filename}')
+            sub_folders = get_folders_tree(path)
             result += sub_folders
 
     return result
@@ -119,4 +119,4 @@ async def get_folder_stat():
     folders_names = get_folders_tree()
     for folder_name in folders_names:
         if len(folder_name) == 4:
-            print(await MenuStat.get_or_none(path=folder_name))
+            print((await MenuStat.get_or_none(path=folder_name)).interaction_time)
