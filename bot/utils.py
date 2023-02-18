@@ -143,7 +143,27 @@ async def get_folder_stat():
                 else:
                     stat['menu'][name] += 1
 
-    print(stat['menu'])
+        if len(folder_name) == 8:
+            sub_menu_stat = (await MenuStat.all().filter(path=folder_name))
+            for sub_menu_item in sub_menu_stat:
+                if len(sub_menu_stat) == 0: continue
+                name = get_name_from_path(decode_path(sub_menu_item.path))
+                if name not in stat['sub_menu'].keys():
+                    stat['sub_menu'][name] = 1
+                else:
+                    stat['sub_menu'][name] += 1
+
+        if len(folder_name) == 12:
+            fairy_tail_stat = (await MenuStat.all().filter(path=folder_name))
+            for fairy_tail_item in fairy_tail_stat:
+                if len(fairy_tail_stat) == 0: continue
+                name = get_name_from_path(decode_path(fairy_tail_item.path))
+                if name not in stat['fairy_tail'].keys():
+                    stat['fairy_tail'][name] = 1
+                else:
+                    stat['fairy_tail'][name] += 1
+
+    print(stat)
         # if len(folder_name) == 8:
         #     sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
         #     if sub_menu_stat is not None:
