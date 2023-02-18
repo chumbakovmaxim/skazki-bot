@@ -1,12 +1,13 @@
 import typing
-
-
-class TopicItem(typing.TypedDict):
-    text: str
-    callback_data: str
+from aiogram.types import FSInputFile
 
 
 class ButtonsData(typing.TypedDict):
     text: str
     path: str
 
+
+class Media(typing.TypedDict):
+    audio: str | FSInputFile
+    description: str
+    photo: str | FSInputFile

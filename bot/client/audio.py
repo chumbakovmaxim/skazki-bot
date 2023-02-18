@@ -31,20 +31,30 @@ async def fairy_tail_handler(
     media = get_content_from_folder(fairy_tail_path)
 
     audio = media['audio']
+    description = media['description']
+    image = media['photo']
     print(audio)
 
     try:
-        await bot.send_photo(chat_id=user_id, photo=media['photo'], caption=media['description'])
-    except Exception as e:
-        print(e)
-    try:
-        file = None #await FairyTail.get_or_none(local_file_id=fairy_tail_path)
+        file = await FairyTail.get_or_none(local_file_id=fairy_tail_path)
+        await bot.send_photo(
+            chat_id=user_id,
+            photo=image,
+            caption=description
+        )
         # Если аудио уже было отправлено и есть на серверах ТГ, то отправляем файл по file_id
         if file is not None:
-            await bot.send_audio(chat_id=user_id, audio=file.tg_file_id, performer='Сказки для жизни')
+            await bot.send_audio(
+                chat_id=user_id,
+                audio=file.tg_file_id,
+                performer='Сказки для жизни'
+            )
         else:
             audio_message: types.Message = await bot.send_audio(chat_id=user_id, audio=audio)
-            await FairyTail.update_or_create(local_file_id=fairy_tail_path, tg_file_id=audio_message.audio.file_id)
+            await FairyTail.update_or_create(
+                local_file_id=fairy_tail_path,
+                tg_file_id=audio_message.audio.file_id
+            )
     except Exception as e:
         print(e)
         await query.message.answer(text='Упс! Что-то пошло не так')

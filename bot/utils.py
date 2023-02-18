@@ -1,6 +1,6 @@
 import os
 from aiogram.types import FSInputFile
-from tg_types import ButtonsData
+from tg_types import ButtonsData, Media
 
 
 def decode_callback_data(path: str) -> str:
@@ -37,8 +37,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     return data
 
 
-def get_content_from_folder(path: str):
-    root_path = './Сказки'
+def get_content_from_folder(path: str) -> Media:
     result = {
         'audio': '',
         'description': '',
