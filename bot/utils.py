@@ -143,7 +143,7 @@ async def get_folder_stat():
                 else:
                     stat['menu'][name] += 1
 
-        print(stat['menu'])
+    print(stat['menu'])
         # if len(folder_name) == 8:
         #     sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
         #     if sub_menu_stat is not None:
