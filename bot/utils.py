@@ -17,7 +17,7 @@ def decode_path(path: str) -> str:
         for folder_name in os.listdir(root_path):
             if folder_name[:3] == path_piece:
                 root_path += f'/{folder_name}'
-    print('decode_callback_data', root_path)
+
     return root_path
 
 
@@ -35,6 +35,7 @@ def encrypt_path(path: str) -> str:
         path[index] = item[:3]
     path = '/'.join(path)
     path = '/' + path
+
     return path
 
 
@@ -52,7 +53,7 @@ def get_menu_folders() -> list[ButtonsData]:
                 'text': filename[3:],
                 'path': f'/{filename[:3]}'
             })
-    print('get_menu_folders', data)
+
     return data
 
 
@@ -68,7 +69,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
             'text': filename[3:],
             'path': f'{path}/{filename[:3]}'
         })
-    print('get_sub_menu_folders', data)
+
     return data
 
 
@@ -93,7 +94,7 @@ def get_content_from_folder(path: str) -> Media:
                 result['description'] = f.read()
         if file[-3:] == 'jpg':
             result['photo'] = FSInputFile(path=path + '/' + file)
-    print('RESULT get_content_from_folder', result)
+
     return result
 
 
@@ -119,4 +120,6 @@ async def get_folder_stat():
     folders_names = get_folders_tree()
     for folder_name in folders_names:
         if len(folder_name) == 4:
-            print((await MenuStat.get_or_none(path=folder_name)).interaction_time)
+            stat = (await MenuStat.get_or_none(path=folder_name))
+            if stat is not None:
+                print(stat.interaction_time, decode_path(stat.path))
