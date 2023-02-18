@@ -83,7 +83,7 @@ def get_content_from_folder(path: str) -> Media:
 def get_folders_tree(root_path='./Сказки') -> list[str]:
     result = []
     for filename in os.listdir(root_path):
-        if filename[:1] != '.':
+        if filename[:1] != '.' and os.path.isdir(f'{root_path}/{filename}'):
             result.append(f'{root_path}/{filename[:3]}'[8:])
             sub_folders = get_folders_tree(root_path + f'/{filename}')
             result += sub_folders
