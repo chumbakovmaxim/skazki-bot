@@ -22,6 +22,6 @@ class Type(Enum):
 
 
 class Stat(typing.TypedDict):
-    type: typing.Literal['Категория', 'Подкатегория', 'Сказка']
-    name: str
-    interaction_count: int
+    menu: dict[str, int]
+    sub_menu: dict[str, int]
+    fairy_tail: dict[str, int]

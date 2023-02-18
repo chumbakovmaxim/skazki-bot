@@ -129,16 +129,21 @@ def get_folders_tree(root_path: str = './Сказки') -> list[str]:
 
 
 async def get_folder_stat():
-    stat: list[Stat] = []
+    stat: Stat = {'menu': {}, 'sub_menu': {}, 'fairy_tail': {}}
     folders_names = get_folders_tree()
     for folder_name in folders_names:
 
         if len(folder_name) == 4:
             menu_stat = (await MenuStat.all().filter(path=folder_name))
-            if len(menu_stat) != 0:
-                print(menu_stat)
-                print(len(menu_stat))
+            for menu_item in menu_stat:
+                if len(menu_stat) == 0: continue
+                name = get_name_from_path(decode_path(menu_item.path))
+                if name not in stat['menu'].keys():
+                    stat['menu'][name] = 1
+                else:
+                    stat['menu'][name] += 1
 
+        print(stat['menu'])
         # if len(folder_name) == 8:
         #     sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
         #     if sub_menu_stat is not None:
