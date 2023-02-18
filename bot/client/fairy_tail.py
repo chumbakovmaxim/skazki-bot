@@ -26,6 +26,7 @@ async def fairy_tail_handler(
     path = callback_data.value
     fairy_tail_path = get_sub_menu_folders(path)
 
+    print('path', path)
     await SubMenuStat.create_record(query.from_user.id, path)
 
     try:

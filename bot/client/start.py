@@ -24,7 +24,7 @@ async def command_start_handler(
     user_name = message.from_user.username
 
     await User.update_or_create(tg_user_id=user_id)
-    await get_folder_stat()
+    #await get_folder_stat()
 
     await bot.send_message(
         chat_id=user_id,
