@@ -6,6 +6,7 @@ from keyboards import keyboard_constructor_fairy_tail
 from magic_filter import F
 
 from keyboards import MenuCallbackFactory
+from db.models import SubMenuStat
 
 router = Router()
 
@@ -24,6 +25,8 @@ async def fairy_tail_handler(
 
     path = callback_data.value
     fairy_tail_path = get_sub_menu_folders(path)
+
+    await SubMenuStat.create_record(query.from_user.id, path)
 
     try:
         await query.message.edit_text(text=msg.fairy_tails_message,

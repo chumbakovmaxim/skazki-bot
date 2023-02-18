@@ -1,6 +1,7 @@
 import os
 from aiogram.types import FSInputFile
 from tg_types import ButtonsData, Media
+from db.models import User, MenuStat, SubMenuStat, FairyTailStat
 
 
 def decode_callback_data(path: str) -> str:
@@ -47,7 +48,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
     for filename in os.listdir(decode_callback_data(path)):
         data.append({
             'text': filename[3:],
-            'path': f'{path}/{filename[:3]}'
+            'path': f'/{path}/{filename[:3]}'
         })
     return data
 
@@ -76,3 +77,16 @@ def get_content_from_folder(path: str) -> Media:
             result['photo'] = FSInputFile(path=path + '/' + file)
     print('RESULT get_content_from_folder', result)
     return result
+
+
+def get_folders_tree(root_path = './Сказки') -> list[str]:
+    result = []
+
+    for filename in os.listdir(root_path):
+        if filename[:1] != '.':
+            result.append(filename)
+
+    return result
+
+def get_folder_stat():
+    pass

@@ -5,6 +5,7 @@ import messages as msg
 from keyboards import start_keyboard
 
 from bot.utils import get_menu_folders
+from db.models import User
 
 router = Router()
 
@@ -21,6 +22,8 @@ async def command_start_handler(
     get_menu_folders()
     user_id = message.from_user.id
     user_name = message.from_user.username
+
+    await User.update_or_create(tg_user_id=user_id)
 
     await bot.send_message(
         chat_id=user_id,

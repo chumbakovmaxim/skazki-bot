@@ -6,6 +6,8 @@ from keyboards import keyboard_constructor_menu
 import buttons_texts as btn
 from bot.utils import get_menu_folders
 
+from db.models import MenuStat
+
 router = Router()
 
 
