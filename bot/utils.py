@@ -17,7 +17,7 @@ def decode_callback_data(path: str) -> str:
         for folder_name in os.listdir(root_path):
             if folder_name[:3] == path_piece:
                 root_path += f'/{folder_name}'
-
+    print('decode_callback_data', root_path)
     return root_path
 
 
@@ -35,6 +35,7 @@ def get_menu_folders() -> list[ButtonsData]:
                 'text': filename[3:],
                 'path': f'/{filename[:3]}'
             })
+    print('get_menu_folders', data)
     return data
 
 
@@ -50,6 +51,7 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
             'text': filename[3:],
             'path': f'/{path}/{filename[:3]}'
         })
+    print('get_sub_menu_folders', data)
     return data
 
 
@@ -66,7 +68,6 @@ def get_content_from_folder(path: str) -> Media:
     }
 
     path = decode_callback_data(path)
-    print('PATH get_content_from_folder', path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
             result['audio'] = FSInputFile(path=path + '/' + file, filename=file[:-4])
@@ -79,7 +80,7 @@ def get_content_from_folder(path: str) -> Media:
     return result
 
 
-def get_folders_tree(root_path = './Сказки') -> list[str]:
+def get_folders_tree(root_path='./Сказки') -> list[str]:
     result = []
 
     for filename in os.listdir(root_path):
@@ -87,6 +88,7 @@ def get_folders_tree(root_path = './Сказки') -> list[str]:
             result.append(filename)
 
     return result
+
 
 def get_folder_stat():
     pass
