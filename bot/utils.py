@@ -135,16 +135,16 @@ async def get_folder_stat():
 
         if len(folder_name) == 4:
             menu_stat = (await MenuStat.all().filter(path=folder_name))
-            if menu_stat is not None:
+            if len(menu_stat) != 0:
                 print(menu_stat)
                 print(len(menu_stat))
 
-        if len(folder_name) == 8:
-            sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
-            if sub_menu_stat is not None:
-                print(len(sub_menu_stat))
-
-        if len(folder_name) == 12:
-            fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
-            if fairy_tail_stat is not None:
-                print(len(fairy_tail_stat))
+        # if len(folder_name) == 8:
+        #     sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
+        #     if sub_menu_stat is not None:
+        #         print(len(sub_menu_stat))
+        #
+        # if len(folder_name) == 12:
+        #     fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
+        #     if fairy_tail_stat is not None:
+        #         print(len(fairy_tail_stat))
