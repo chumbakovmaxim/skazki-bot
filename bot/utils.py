@@ -123,3 +123,11 @@ async def get_folder_stat():
             stat = (await MenuStat.get_or_none(path=folder_name))
             if stat is not None:
                 print(stat.interaction_time, decode_path(stat.path))
+        if len(folder_name) == 8:
+            stat = (await SubMenuStat.get_or_none(path=folder_name))
+            if stat is not None:
+                print(stat.interaction_time, decode_path(stat.path))
+        if len(folder_name) == 12:
+            stat = (await FairyTailStat.get_or_none(path=folder_name))
+            if stat is not None:
+                print(stat.interaction_time, decode_path(stat.path))
