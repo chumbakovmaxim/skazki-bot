@@ -224,13 +224,15 @@ async def genetate_excel_stat():
     sheet_active_count.write(1, 1, active_users['per_week'])
 
     content_rating = await get_content_rating()
+    sheet_interaction_count.write(0,1, 'За день')
+    sheet_interaction_count.write(0,3, 'За неделю')
     for index, per_day_name in enumerate(content_rating['per_day']):
-        sheet_interaction_count.write(index, 0, per_day_name)
-        sheet_interaction_count.write(index, 1, content_rating['per_day'][per_day_name])
+        sheet_interaction_count.write(index + 1, 0, per_day_name)
+        sheet_interaction_count.write(index + 1, 1, content_rating['per_day'][per_day_name])
 
     for index, per_week_name in enumerate(content_rating['per_week']):
-        sheet_interaction_count.write(index, 2, per_week_name)
-        sheet_interaction_count.write(index, 3, content_rating['per_week'][per_week_name])
+        sheet_interaction_count.write(index + 1, 2, per_week_name)
+        sheet_interaction_count.write(index + 1, 3, content_rating['per_week'][per_week_name])
 
 
     folders_stat = await get_folder_stat()
