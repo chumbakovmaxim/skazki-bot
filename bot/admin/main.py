@@ -7,7 +7,7 @@ import os
 from config import ADMIN_PASSWORD
 from db.models import User
 import messages as msg
-from bot.utils import get_folder_stat, get_active_users_count, get_content_rating, genetate_excel_stat
+from bot.utils import get_folder_stat, get_active_users_count, get_content_rating, generate_excel_stat
 from tg_types import Stat
 
 router = Router()
@@ -49,7 +49,7 @@ async def stat(message: types.Message, bot: Bot) -> None:
     statistic: Stat = await get_folder_stat()
     active_users = await get_active_users_count()
     await get_content_rating()
-    await genetate_excel_stat()
+    await generate_excel_stat()
 
     stat_file = FSInputFile(path='stat.xlsx')
 
