@@ -223,17 +223,27 @@ async def genetate_excel_stat():
     sheet_active_count.write(1, 0, 'Кол-во активных пользователей за неделю')
     sheet_active_count.write(1, 1, active_users['per_week'])
 
+    content_rating = await get_content_rating()
+    for index, per_day_name in enumerate(content_rating['per_day']):
+        sheet_interaction_count.write(index, 0, per_day_name)
+        sheet_interaction_count.write(index, 1, content_rating['per_day'][per_day_name])
+
+    for index, per_week_name in enumerate(content_rating['per_week']):
+        sheet_interaction_count.write(index, 2, per_week_name)
+        sheet_interaction_count.write(index, 3, content_rating['per_week'][per_week_name])
+
+
     folders_stat = await get_folder_stat()
     for index, menu_item in enumerate(folders_stat['menu']):
-        sheet_interaction_count.write(index, 0, menu_item)
-        sheet_interaction_count.write(index, 1, folders_stat['menu'][menu_item])
+        sheet_rating.write(index, 0, menu_item)
+        sheet_rating.write(index, 1, folders_stat['menu'][menu_item])
 
     for index, sub_menu_item in enumerate(folders_stat['sub_menu']):
-        sheet_interaction_count.write(index, 2, sub_menu_item)
-        sheet_interaction_count.write(index, 3, folders_stat['sub_menu'][sub_menu_item])
+        sheet_rating.write(index, 2, sub_menu_item)
+        sheet_rating.write(index, 3, folders_stat['sub_menu'][sub_menu_item])
 
     for index, fairy_tail_item in enumerate(folders_stat['fairy_tail']):
-        sheet_interaction_count.write(index, 4, fairy_tail_item)
-        sheet_interaction_count.write(index, 5, folders_stat['fairy_tail'][fairy_tail_item])
+        sheet_rating.write(index, 4, fairy_tail_item)
+        sheet_rating.write(index, 5, folders_stat['fairy_tail'][fairy_tail_item])
 
     workbook.close()
