@@ -184,4 +184,9 @@ async def get_active_users_count() -> dict[str, int]:
 def get_content_rating():
     folders = get_folders_tree()
     content_paths = [x for x in folders if len(x) == 12]
-    print(content_paths)
+    fairy_tails_per_day = await FairyTailStat.filter(
+        interaction_time__gte=Parameter("CURRENT_DATE") - Interval(days=1))
+    fairy_tails_per_week = await FairyTailStat.filter(
+        interaction_time__gte=Parameter("CURRENT_DATE") - Interval(days=7))
+    for item in fairy_tails_per_day:
+        print(get_name_from_path(decode_path(item.path)))
