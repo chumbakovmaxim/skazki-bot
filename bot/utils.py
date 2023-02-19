@@ -258,8 +258,12 @@ async def generate_excel_stat():
 
     folders_stat = await get_folder_stat()
     sheet_rating.write(0, 0, 'Проблема', cell_format)
+    sheet_rating.write(0, 1, 'Кол-во обращений', cell_format)
     sheet_rating.write(0, 2, 'Проблема', cell_format)
+    sheet_rating.write(0, 3, 'Кол-во обращений', cell_format)
     sheet_rating.write(0, 4, 'Сказка', cell_format)
+    sheet_rating.write(0, 5, 'Кол-во обращений', cell_format)
+
     for index, menu_item in enumerate(folders_stat['menu']):
         sheet_rating.write(index + 1, 0, menu_item, cell_format)
         sheet_rating.write(index + 1, 1, folders_stat['menu'][menu_item], cell_format)
