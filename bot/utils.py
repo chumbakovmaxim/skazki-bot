@@ -234,42 +234,42 @@ async def generate_excel_stat():
     sheet_count = workbook.add_worksheet("Общее кол-во пользователей")
     sheet_count.set_column(0, 1, 15)
     sheet_interaction_count = workbook.add_worksheet("Кол-во запусков контента")
-    sheet_interaction_count.set_column(0, 1, 15)
+    sheet_interaction_count.set_column(0, 2, 15)
     sheet_rating = workbook.add_worksheet("Рейтинг")
     sheet_rating.set_column(0, 5, 15)
 
     users_count = await get_users_count()
-    sheet_count.write(0, 0, 'Общее кол-во пользователей')
-    sheet_count.write(0, 1, users_count)
+    sheet_count.write(0, 0, 'Общее кол-во пользователей', cell_format)
+    sheet_count.write(0, 1, users_count, cell_format)
 
     active_users = await get_active_users_count()
-    sheet_count.write(1, 0, 'Кол-во активных пользователей за день')
-    sheet_count.write(1, 1, active_users['per_day'])
-    sheet_count.write(2, 0, 'Кол-во активных пользователей за неделю')
-    sheet_count.write(2, 1, active_users['per_week'])
+    sheet_count.write(1, 0, 'Кол-во активных пользователей за день', cell_format)
+    sheet_count.write(1, 1, active_users['per_day'], cell_format)
+    sheet_count.write(2, 0, 'Кол-во активных пользователей за неделю', cell_format)
+    sheet_count.write(2, 1, active_users['per_week'], cell_format)
 
     content_rating = await get_content_rating()
-    sheet_interaction_count.write(0, 1, 'За день')
-    sheet_interaction_count.write(0, 2, 'За неделю')
+    sheet_interaction_count.write(0, 1, 'За день', cell_format)
+    sheet_interaction_count.write(0, 2, 'За неделю', cell_format)
     for index, item in enumerate(content_rating):
-        sheet_interaction_count.write(index + 1, 0, item['name'])
-        sheet_interaction_count.write(index + 1, 1, item['per_day'])
-        sheet_interaction_count.write(index + 1, 2, item['per_week'])
+        sheet_interaction_count.write(index + 1, 0, item['name'], cell_format)
+        sheet_interaction_count.write(index + 1, 1, item['per_day'], cell_format)
+        sheet_interaction_count.write(index + 1, 2, item['per_week'], cell_format)
 
     folders_stat = await get_folder_stat()
-    sheet_rating.write(0, 0, 'Проблема')
-    sheet_rating.write(0, 2, 'Проблема')
-    sheet_rating.write(0, 4, 'Сказка')
+    sheet_rating.write(0, 0, 'Проблема', cell_format)
+    sheet_rating.write(0, 2, 'Проблема', cell_format)
+    sheet_rating.write(0, 4, 'Сказка', cell_format)
     for index, menu_item in enumerate(folders_stat['menu']):
-        sheet_rating.write(index + 1, 0, menu_item)
-        sheet_rating.write(index + 1, 1, folders_stat['menu'][menu_item])
+        sheet_rating.write(index + 1, 0, menu_item, cell_format)
+        sheet_rating.write(index + 1, 1, folders_stat['menu'][menu_item], cell_format)
 
     for index, sub_menu_item in enumerate(folders_stat['sub_menu']):
-        sheet_rating.write(index + 1, 2, sub_menu_item)
-        sheet_rating.write(index + 1, 3, folders_stat['sub_menu'][sub_menu_item])
+        sheet_rating.write(index + 1, 2, sub_menu_item, cell_format)
+        sheet_rating.write(index + 1, 3, folders_stat['sub_menu'][sub_menu_item], cell_format)
 
     for index, fairy_tail_item in enumerate(folders_stat['fairy_tail']):
-        sheet_rating.write(index + 1, 4, fairy_tail_item)
-        sheet_rating.write(index + 1, 5, folders_stat['fairy_tail'][fairy_tail_item])
+        sheet_rating.write(index + 1, 4, fairy_tail_item, cell_format)
+        sheet_rating.write(index + 1, 5, folders_stat['fairy_tail'][fairy_tail_item], cell_format)
 
     workbook.close()
