@@ -215,12 +215,25 @@ async def genetate_excel_stat():
 
     users_count = await get_users_count()
     sheet_count.write(0, 0, 'Общее кол-во пользователей')
-    sheet_count.write(0, 0, users_count)
+    sheet_count.write(0, 1, users_count)
 
     active_users = await get_active_users_count()
     sheet_active_count.write(0, 0, 'Кол-во активных пользователей за день')
     sheet_active_count.write(0, 1, active_users['per_day'])
     sheet_active_count.write(1, 0, 'Кол-во активных пользователей за неделю')
     sheet_active_count.write(1, 1, active_users['per_week'])
+
+    folders_stat = await get_folder_stat()
+    for index, menu_item in enumerate(folders_stat['menu']):
+        sheet_interaction_count.write(index, 0, menu_item)
+        sheet_interaction_count.write(index, 1, folders_stat['menu'][menu_item])
+
+    for index, sub_menu_item in enumerate(folders_stat['sub_menu']):
+        sheet_interaction_count.write(index, 2, sub_menu_item)
+        sheet_interaction_count.write(index, 3, folders_stat['sub_menu'][sub_menu_item])
+
+    for index, fairy_tail_item in enumerate(folders_stat['fairy_tail']):
+        sheet_interaction_count.write(index, 4, fairy_tail_item)
+        sheet_interaction_count.write(index, 5, folders_stat['fairy_tail'][fairy_tail_item])
 
     workbook.close()

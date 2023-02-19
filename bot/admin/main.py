@@ -2,6 +2,7 @@ from aiogram import Router, types, Bot
 from aiogram.filters import Command
 from aiogram.filters import CommandObject
 from aiogram.types import FSInputFile
+import os
 
 from config import ADMIN_PASSWORD
 from db.models import User
@@ -53,3 +54,5 @@ async def stat(message: types.Message, bot: Bot) -> None:
     stat_file = FSInputFile(path='stat.xlsx')
 
     await bot.send_document(chat_id=message.from_user.id, document=stat_file)
+
+    os.remove('stat.xlsx')
