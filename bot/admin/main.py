@@ -45,6 +45,6 @@ async def stat(message: types.Message) -> None:
     text = ''
     statistic: Stat = await get_folder_stat()
     active_users = await get_active_users_count()
-    get_content_rating()
+    await get_content_rating()
 
     await message.answer(f'{active_users["per_day"]}  {active_users["per_week"]}')
