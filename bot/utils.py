@@ -236,16 +236,19 @@ async def genetate_excel_stat():
 
 
     folders_stat = await get_folder_stat()
+    sheet_rating.write(0, 0, 'Проблема')
+    sheet_rating.write(0, 2, 'Проблема')
+    sheet_rating.write(0, 4, 'Сказка')
     for index, menu_item in enumerate(folders_stat['menu']):
-        sheet_rating.write(index, 0, menu_item)
-        sheet_rating.write(index, 1, folders_stat['menu'][menu_item])
+        sheet_rating.write(index + 1, 0, menu_item)
+        sheet_rating.write(index + 1, 1, folders_stat['menu'][menu_item])
 
     for index, sub_menu_item in enumerate(folders_stat['sub_menu']):
-        sheet_rating.write(index, 2, sub_menu_item)
-        sheet_rating.write(index, 3, folders_stat['sub_menu'][sub_menu_item])
+        sheet_rating.write(index + 1, 2, sub_menu_item)
+        sheet_rating.write(index + 1, 3, folders_stat['sub_menu'][sub_menu_item])
 
     for index, fairy_tail_item in enumerate(folders_stat['fairy_tail']):
-        sheet_rating.write(index, 4, fairy_tail_item)
-        sheet_rating.write(index, 5, folders_stat['fairy_tail'][fairy_tail_item])
+        sheet_rating.write(index + 1, 4, fairy_tail_item)
+        sheet_rating.write(index + 1, 5, folders_stat['fairy_tail'][fairy_tail_item])
 
     workbook.close()
