@@ -1,5 +1,6 @@
 import os
 from pypika.terms import Parameter, Interval
+import xlsxwriter
 
 from aiogram.types import FSInputFile
 from tg_types import ButtonsData, Media, Stat
@@ -202,3 +203,24 @@ async def get_content_rating() -> dict[str, dict[str, int]] | dict[str, dict]:
             result['per_week'][name] += 1
     print(result)
     return result
+
+
+async def genetate_excel_stat():
+    workbook = xlsxwriter.Workbook('stat.xlsx')
+
+    sheet_count = workbook.add_worksheet("Общее кол-во пользователей")
+    sheet_active_count = workbook.add_worksheet("Кол-во активных пользователей")
+    sheet_interaction_count = workbook.add_worksheet("Кол-во запусков контента")
+    sheet_rating = workbook.add_worksheet("Рейтинг")
+
+    users_count = await get_users_count()
+    sheet_count.write(0, 0, 'Общее кол-во пользователей')
+    sheet_count.write(0, 0, users_count)
+
+    active_users = await get_active_users_count()
+    sheet_active_count.write(0, 0, 'Кол-во активных пользователей за день')
+    sheet_active_count.write(0, 1, active_users['per_day'])
+    sheet_active_count.write(1, 0, 'Кол-во активных пользователей за неделю')
+    sheet_active_count.write(1, 1, active_users['per_week'])
+
+    workbook.close()
