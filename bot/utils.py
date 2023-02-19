@@ -181,19 +181,24 @@ async def get_active_users_count() -> dict[str, int]:
     return result
 
 
-async def get_content_rating() -> dict[str, int] | dict:
-    result = {}
-    folders = get_folders_tree()
-    content_paths = [x for x in folders if len(x) == 12]
+async def get_content_rating() -> dict[str, dict[str, int]] | dict[str, dict]:
+    result = {'per_day': {}, 'per_week': {}}
     fairy_tails_per_day = await FairyTailStat.filter(
         interaction_time__gte=Parameter("CURRENT_DATE") - Interval(days=1))
     fairy_tails_per_week = await FairyTailStat.filter(
         interaction_time__gte=Parameter("CURRENT_DATE") - Interval(days=7))
     for item in fairy_tails_per_day:
         name = get_name_from_path(decode_path(item.path))
-        if name not in result.keys():
-            result[name] = 1
+        if name not in result['per_day'].keys():
+            result['per_day'][name] = 1
         else:
-            result[name] += 1
+            result['per_day'][name] += 1
+
+    for item in fairy_tails_per_week:
+        name = get_name_from_path(decode_path(item.path))
+        if name not in result['per_week'].keys():
+            result['per_week'][name] = 1
+        else:
+            result['per_week'][name] += 1
     print(result)
     return result
