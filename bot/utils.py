@@ -195,4 +195,5 @@ async def get_content_rating() -> dict[str, int] | dict:
             result[name] = 1
         else:
             result[name] += 1
+    print(result)
     return result
