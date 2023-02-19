@@ -191,8 +191,8 @@ async def get_active_users_count() -> dict[str, int]:
     return result
 
 
-async def get_content_rating() -> dict[str, dict[str, int]] | dict[str, dict]:
-    result = {}
+async def get_content_rating() -> []:
+    result = []
     # for item in fairy_tails_per_day:
     #     name = get_name_from_path(decode_path(item.path))
     #     if name not in result['per_day'].keys():
@@ -216,8 +216,11 @@ async def get_content_rating() -> dict[str, dict[str, int]] | dict[str, dict]:
         fairy_tails_per_week_count = await FairyTailStat.filter(
             interaction_time__gte=Parameter("CURRENT_DATE") - Interval(days=7)).filter(path=fairy_tail).count()
 
-        result[name] = {'per_day': fairy_tails_per_day_count,
-                        'per_week': fairy_tails_per_week_count}
+        result.append({
+            'name': name,
+            'per_day': fairy_tails_per_day_count,
+            'per_week': fairy_tails_per_week_count
+        })
 
     print(result)
     return result
@@ -243,10 +246,10 @@ async def genetate_excel_stat():
     content_rating = await get_content_rating()
     sheet_interaction_count.write(0, 1, 'За день')
     sheet_interaction_count.write(0, 2, 'За неделю')
-    for index, name in enumerate(content_rating):
-        sheet_interaction_count.write(index + 1, 0, name)
-        sheet_interaction_count.write(index + 1, 1, content_rating[name]['per_day'])
-        sheet_interaction_count.write(index + 1, 2, content_rating[name]['per_week'])
+    for index, item in enumerate(content_rating):
+        sheet_interaction_count.write(index + 1, 0, item['name'])
+        sheet_interaction_count.write(index + 1, 1, item['per_day'])
+        sheet_interaction_count.write(index + 1, 2, item['per_week'])
 
     folders_stat = await get_folder_stat()
     sheet_rating.write(0, 0, 'Проблема')
