@@ -228,8 +228,8 @@ async def get_content_rating() -> []:
 
 async def genetate_excel_stat():
     workbook = xlsxwriter.Workbook('stat.xlsx')
-    cell_format = workbook.add_format()
-    cell_format.set_text_wrap()
+    # cell_format = workbook.add_format()
+    # cell_format.set_text_wrap()
 
     sheet_count = workbook.add_worksheet("Общее кол-во пользователей")
     #sheet_count.set_column(0, 1, 15)
