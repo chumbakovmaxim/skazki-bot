@@ -155,9 +155,9 @@ async def get_folder_stat() -> Stat:
                     stat['sub_menu'][name] = 1
                 else:
                     stat['sub_menu'][name] += 1
-                if len(sub_menu_stat) == 0:
-                    name = get_name_from_path(decode_path(folder_name))
-                    stat['sub_menu'][name] = 0
+            if len(sub_menu_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat['sub_menu'][name] = 0
 
         if len(folder_name) == 12:
             fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
@@ -167,9 +167,9 @@ async def get_folder_stat() -> Stat:
                     stat['fairy_tail'][name] = 1
                 else:
                     stat['fairy_tail'][name] += 1
-                if len(fairy_tail_stat) == 0:
-                    name = get_name_from_path(decode_path(folder_name))
-                    stat['fairy_tail'][name] = 0
+            if len(fairy_tail_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat['fairy_tail'][name] = 0
 
     print(stat)
     return stat
