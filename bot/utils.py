@@ -179,3 +179,9 @@ async def get_active_users_count() -> dict[str, int]:
     result['per_week'] = active_users_per_week
     print(result)
     return result
+
+
+def get_content_rating():
+    folders = get_folders_tree()
+    content_paths = [x for x in folders if len(x) == 12]
+    print(content_paths)
