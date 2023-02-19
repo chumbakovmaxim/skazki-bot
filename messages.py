@@ -3,3 +3,5 @@ start_message = 'Добро пожаловать, {name}!\nВы в гостях 
 fairy_tails_message = 'Выберите один из предложенных вариантов'
 
 info_message = 'Ссылки на подкасты\n\nАвторы подкаста: Маргарита и Платон Мерсияновы\nПлатон Мерсиянов в ВК: https://vk.com/platon.mersianov\nГруппа подкаста в ВК: https://vk.com/skazkidlyazhizni'
+
+admin_success_message = 'Успешно! Теперь вы администратор'

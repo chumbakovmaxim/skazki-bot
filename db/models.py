@@ -17,6 +17,7 @@ class User(Model):
         table = 'users'
 
     tg_user_id = fields.BigIntField(pk=True)
+    is_admin = fields.BooleanField(default=False)
     activity_time = fields.DatetimeField(auto_now=True)
 
 

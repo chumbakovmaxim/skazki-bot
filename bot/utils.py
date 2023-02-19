@@ -1,7 +1,9 @@
 import os
+from pypika.terms import Parameter, Interval
+
 from aiogram.types import FSInputFile
 from tg_types import ButtonsData, Media, Stat
-from db.models import MenuStat, SubMenuStat, FairyTailStat
+from db.models import MenuStat, SubMenuStat, FairyTailStat, User
 
 
 def decode_path(path: str) -> str:
@@ -128,14 +130,13 @@ def get_folders_tree(root_path: str = './Сказки') -> list[str]:
     return result
 
 
-async def get_folder_stat():
+async def get_folder_stat() -> Stat:
     stat: Stat = {'menu': {}, 'sub_menu': {}, 'fairy_tail': {}}
     folders_names = get_folders_tree()
     for folder_name in folders_names:
         if len(folder_name) == 4:
             menu_stat = (await MenuStat.all().filter(path=folder_name))
             for menu_item in menu_stat:
-                #if len(menu_stat) == 0: continue
                 name = get_name_from_path(decode_path(menu_item.path))
                 if name not in stat['menu'].keys():
                     stat['menu'][name] = 1
@@ -145,7 +146,6 @@ async def get_folder_stat():
         if len(folder_name) == 8:
             sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
             for sub_menu_item in sub_menu_stat:
-                #if len(sub_menu_stat) == 0: continue
                 name = get_name_from_path(decode_path(sub_menu_item.path))
                 if name not in stat['sub_menu'].keys():
                     stat['sub_menu'][name] = 1
@@ -155,7 +155,6 @@ async def get_folder_stat():
         if len(folder_name) == 12:
             fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
             for fairy_tail_item in fairy_tail_stat:
-                #if len(fairy_tail_stat) == 0: continue
                 name = get_name_from_path(decode_path(fairy_tail_item.path))
                 if name not in stat['fairy_tail'].keys():
                     stat['fairy_tail'][name] = 1
@@ -163,3 +162,20 @@ async def get_folder_stat():
                     stat['fairy_tail'][name] += 1
 
     print(stat)
+    return stat
+
+
+async def get_users_count() -> int:
+    users_count = await User.all().count()
+    return users_count
+
+
+async def get_active_users_count() -> dict[str, int]:
+    result = {'per_day': 0, 'per_week': 0}
+    active_users_per_day = await User.filter(activity_time__gte=Parameter("CURRENT_DATE") - Interval(days=1)).count()
+    active_users_per_week = await User.filter(activity_time__gte=Parameter("CURRENT_DATE") - Interval(days=7)).count()
+
+    result['per_day'] = active_users_per_day
+    result['per_week'] = active_users_per_week
+    print(result)
+    return result
