@@ -228,10 +228,12 @@ async def get_content_rating() -> []:
 
 async def genetate_excel_stat():
     workbook = xlsxwriter.Workbook('stat.xlsx')
+    cell_format = workbook.add_format()
+    cell_format.set_text_wrap()
 
-    sheet_count = workbook.add_worksheet("Общее кол-во пользователей")
-    sheet_interaction_count = workbook.add_worksheet("Кол-во запусков контента")
-    sheet_rating = workbook.add_worksheet("Рейтинг")
+    sheet_count = workbook.add_worksheet("Общее кол-во пользователей").set_column(0, 1, 15)
+    sheet_interaction_count = workbook.add_worksheet("Кол-во запусков контента").set_column(0, 1, 15)
+    sheet_rating = workbook.add_worksheet("Рейтинг").set_column(0, 5, 15)
 
     users_count = await get_users_count()
     sheet_count.write(0, 0, 'Общее кол-во пользователей')
