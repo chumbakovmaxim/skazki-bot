@@ -21,7 +21,11 @@ async def command_start_handler(
     """
     get_menu_folders()
     user_id = message.from_user.id
-    user_name = message.from_user.username
+    user_name = message.from_user.first_name
+    if user_name is not None:
+        user_name = f', {user_name}'
+    else:
+        user_name = ''
 
     await User.update_or_create(tg_user_id=user_id)
 
