@@ -1,6 +1,7 @@
-from aiogram import Router, types
+from aiogram import Router, types, Bot
 from aiogram.filters import Command
 from aiogram.filters import CommandObject
+from aiogram.types import FSInputFile
 
 from config import ADMIN_PASSWORD
 from db.models import User
@@ -27,10 +28,11 @@ async def admin_authorization(message: types.Message, command: CommandObject) ->
 
 
 @router.message(Command('stat'))
-async def stat(message: types.Message) -> None:
+async def stat(message: types.Message, bot: Bot) -> None:
     """
     Функция для вывода статистики
     :param message:
+    :param bot: Bot
     :return: None
     """
     try:
@@ -48,4 +50,6 @@ async def stat(message: types.Message) -> None:
     await get_content_rating()
     await genetate_excel_stat()
 
-    await message.answer(f'{active_users["per_day"]}  {active_users["per_week"]}')
+    stat_file = FSInputFile(path='stat.xlsx')
+
+    await bot.send_document(chat_id=message.from_user.id, document=stat_file)
