@@ -57,5 +57,5 @@ async def fairy_tail_handler(
             )
     except Exception as e:
         print(e)
-        await query.message.answer(text='Упс! Что-то пошло не так')
+        await query.message.answer(text='Здесь будут сказки!')
     await query.answer()

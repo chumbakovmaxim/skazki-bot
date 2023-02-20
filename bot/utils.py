@@ -193,20 +193,6 @@ async def get_active_users_count() -> dict[str, int]:
 
 async def get_content_rating() -> []:
     result = []
-    # for item in fairy_tails_per_day:
-    #     name = get_name_from_path(decode_path(item.path))
-    #     if name not in result['per_day'].keys():
-    #         result['per_day'][name] = 1
-    #     else:
-    #         result['per_day'][name] += 1
-    #
-    # for item in fairy_tails_per_week:
-    #     name = get_name_from_path(decode_path(item.path))
-    #     if name not in result['per_week'].keys():
-    #         result['per_week'][name] = 1
-    #     else:
-    #         result['per_week'][name] += 1
-
     folders = get_folders_tree()
     fairy_tails_folders = [x for x in folders if len(x) == 12]
     for fairy_tail in fairy_tails_folders:

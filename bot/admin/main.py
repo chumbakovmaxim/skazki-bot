@@ -45,14 +45,14 @@ async def stat(message: types.Message, bot: Bot) -> None:
     if not is_admin:
         return
 
-    text = ''
-    statistic: Stat = await get_folder_stat()
-    active_users = await get_active_users_count()
-    await get_content_rating()
     await generate_excel_stat()
 
     stat_file = FSInputFile(path='stat.xlsx')
-
-    await bot.send_document(chat_id=message.from_user.id, document=stat_file)
-
-    os.remove('stat.xlsx')
+    try:
+        await bot.send_document(chat_id=message.from_user.id, document=stat_file)
+    except Exception as e:
+        print(e)
+    try:
+        os.remove('stat.xlsx')
+    except Exception as e:
+        print(e)
