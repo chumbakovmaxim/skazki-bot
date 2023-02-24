@@ -4,7 +4,6 @@ import uvicorn
 
 from aiogram import Bot, Dispatcher
 
-# compile translations
 
 import bot as botsource
 import config as cnf

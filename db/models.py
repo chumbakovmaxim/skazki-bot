@@ -19,6 +19,7 @@ class ImageCache(Model):
     local_file_id = fields.TextField(pk=True)
     tg_file_id = fields.TextField()
 
+
 class User(Model):
     class Meta:
         table = 'users'

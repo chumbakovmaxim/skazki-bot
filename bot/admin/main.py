@@ -16,7 +16,6 @@ router = Router()
 async def admin_authorization(message: types.Message, command: CommandObject) -> None:
     """
     Авторизация администратора
-
     :param message:
     :param command: Аргументы из сообщения (user_id)
     :return: None

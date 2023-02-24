@@ -132,6 +132,10 @@ def get_folders_tree(root_path: str = './Сказки') -> list[str]:
 
 
 async def get_folder_stat() -> Stat:
+    """
+    Получение статистики по папкам (кол-во нажатий)
+    :return: Stat
+    """
     stat: Stat = {'menu': {}, 'sub_menu': {}, 'fairy_tail': {}}
     folders_names = get_folders_tree()
     for folder_name in folders_names:
@@ -171,27 +175,37 @@ async def get_folder_stat() -> Stat:
                 name = get_name_from_path(decode_path(folder_name))
                 stat['fairy_tail'][name] = 0
 
-    print(stat)
     return stat
 
 
 async def get_users_count() -> int:
+    """
+    Получение кол-ва ползователей
+    :return: int
+    """
     users_count = await User.all().count()
     return users_count
 
 
 async def get_active_users_count() -> dict[str, int]:
+    """
+    Получение кол-ва активных пользователей за неделю и за день
+    :return: dict[str, int]
+    """
     result = {'per_day': 0, 'per_week': 0}
     active_users_per_day = await User.filter(activity_time__gte=Parameter("CURRENT_DATE") - Interval(days=1)).count()
     active_users_per_week = await User.filter(activity_time__gte=Parameter("CURRENT_DATE") - Interval(days=7)).count()
 
     result['per_day'] = active_users_per_day
     result['per_week'] = active_users_per_week
-    print(result)
     return result
 
 
 async def get_content_rating() -> []:
+    """
+    Получение кол-ва кликов по сказкам
+    :return: []
+    """
     result = []
     folders = get_folders_tree()
     fairy_tails_folders = [x for x in folders if len(x) == 12]
@@ -208,11 +222,14 @@ async def get_content_rating() -> []:
             'per_week': fairy_tails_per_week_count
         })
 
-    print(result)
     return result
 
 
-async def generate_excel_stat():
+async def generate_excel_stat() -> None:
+    """
+    Генерация excel файла со статистикой
+    :return: None
+    """
     workbook = xlsxwriter.Workbook('stat.xlsx')
     cell_format = workbook.add_format()
     cell_format.set_text_wrap(True)

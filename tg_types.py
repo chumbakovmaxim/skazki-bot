@@ -15,12 +15,6 @@ class Media(typing.TypedDict):
     photo: str | FSInputFile
 
 
-class Type(Enum):
-    RED = '1'
-    BLUE = '2'
-    GREEN = '3'
-
-
 class Stat(typing.TypedDict):
     menu: dict[str, int]
     sub_menu: dict[str, int]
