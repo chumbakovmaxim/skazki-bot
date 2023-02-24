@@ -2,7 +2,7 @@ from aiogram import Router, types, Bot
 from magic_filter import F
 
 from keyboards import MenuCallbackFactory
-from db.models import FairyTailCache, FairyTailStat
+from db.models import FairyTailCache, FairyTailStat, ImageCache
 from bot.utils import get_content_from_folder
 
 
@@ -34,18 +34,30 @@ async def fairy_tail_handler(
     print(audio)
 
     try:
-        file = await FairyTailCache.get_or_none(local_file_id=fairy_tail_path)
-        await bot.send_photo(
-            chat_id=user_id,
-            photo=image,
-            caption=description
-        )
+        audio_file = await FairyTailCache.get_or_none(local_file_id=fairy_tail_path)
+        image_file = await ImageCache.get_or_none(local_file_id=fairy_tail_path)
+        if image_file is not None:
+            await bot.send_photo(
+                chat_id=user_id,
+                photo=image_file.tg_file_id,
+                caption=description
+            )
+        else:
+            image_message: types.Message = await bot.send_photo(
+                chat_id=user_id,
+                photo=image,
+                caption=description
+            )
+            await ImageCache.update_or_create(
+                local_file_id=fairy_tail_path,
+                tg_file_id=image_message.audio.file_id
+            )
         # Если аудио уже было отправлено и есть на серверах ТГ, то отправляем файл по file_id
-        if file is not None:
+        if audio_file is not None:
             print('AUDION FROM DB')
             await bot.send_audio(
                 chat_id=user_id,
-                audio=file.tg_file_id,
+                audio=audio_file.tg_file_id,
                 performer='Сказки для жизни'
             )
         else:

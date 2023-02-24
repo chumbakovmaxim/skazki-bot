@@ -7,8 +7,7 @@ import os
 from config import ADMIN_PASSWORD
 from db.models import User
 import messages as msg
-from bot.utils import get_folder_stat, get_active_users_count, get_content_rating, generate_excel_stat
-from tg_types import Stat
+from bot.utils import generate_excel_stat
 
 router = Router()
 

@@ -12,6 +12,13 @@ class FairyTailCache(Model):
     tg_file_id = fields.TextField()
 
 
+class ImageCache(Model):
+    class Meta:
+        table = "images"
+
+    local_file_id = fields.TextField(pk=True)
+    tg_file_id = fields.TextField()
+
 class User(Model):
     class Meta:
         table = 'users'
@@ -38,6 +45,7 @@ class MenuStat(Model):
 class SubMenuStat(Model):
     class Meta:
         tabel = 'sub_menu_stat'
+
     id = fields.TextField(pk=True)
     path = fields.TextField()
     interaction_time = fields.DatetimeField(auto_now=True)

@@ -72,7 +72,8 @@ def start_keyboard():
     """
     markup = [
         [KeyboardButton(text=btn.fairy_tail_text)],
-        [KeyboardButton(text=btn.about_bot_text)],
+        [KeyboardButton(text=btn.about_authors_text)],
+        [KeyboardButton(text=btn.about_tails_text)],
     ]
     kb = ReplyKeyboardMarkup(keyboard=markup, resize_keyboard=True)
     return kb
