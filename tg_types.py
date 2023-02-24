@@ -1,7 +1,5 @@
 import typing
-from typing import Union
 from aiogram.types import FSInputFile
-from enum import Enum
 
 
 class ButtonsData(typing.TypedDict):
