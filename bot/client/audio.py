@@ -50,7 +50,7 @@ async def fairy_tail_handler(
             )
             await ImageCache.update_or_create(
                 local_file_id=fairy_tail_path,
-                tg_file_id=image_message.audio.file_id
+                tg_file_id=image_message.photo[0].file_id
             )
         # Если аудио уже было отправлено и есть на серверах ТГ, то отправляем файл по file_id
         if audio_file is not None:

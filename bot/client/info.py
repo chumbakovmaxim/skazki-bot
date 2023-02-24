@@ -47,4 +47,3 @@ async def info_authors_handler(
         photo=image,
         caption=msg.about_authors_message
     )
-    await message.answer(text=msg.about_authors_message)
