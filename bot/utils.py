@@ -27,7 +27,7 @@ def decode_path(path: str) -> str:
 def encrypt_path(path: str) -> str:
     """
     Превращает путь вида
-    './Сказки/004Иное/000Взаимопомощь/001Обыкновенный блокнот'
+    './Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот'
     в закодированный путь
     /004/000/001
     :param path: str
@@ -45,7 +45,7 @@ def encrypt_path(path: str) -> str:
 def get_name_from_path(path: str) -> str:
     """
     Возращает имя папки из пути
-    ./Сказки/004Иное/000Взаимопомощь/001Обыкновенный блокнот
+    ./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот
             =>
     Обыкновенный блокнот
     :param path: str
@@ -62,7 +62,9 @@ def get_menu_folders() -> list[ButtonsData]:
     data: list[ButtonsData] = []
     root_path = './Сказки'
     # toDo Вынести путь в переменную
-    for filename in os.listdir(root_path):
+    dirs = os.listdir(root_path)
+    dirs.sort()
+    for filename in dirs:
         if filename[:1] != '.':
             data.append({
                 'text': filename[3:],
