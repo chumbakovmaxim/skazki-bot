@@ -5,7 +5,6 @@ from keyboards import MenuCallbackFactory
 from db.models import FairyTailCache, FairyTailStat, ImageCache
 from botsource.utils import get_content_from_folder
 
-
 router = Router()
 
 
@@ -61,7 +60,12 @@ async def fairy_tail_handler(
                 title=audio_name
             )
         else:
-            audio_message: types.Message = await bot.send_audio(chat_id=user_id, audio=audio, title=audio_name)
+            audio_message: types.Message = await bot.send_audio(
+                chat_id=user_id,
+                audio=audio,
+                title=audio_name,
+                performer='Сказки для жизни'
+            )
             await FairyTailCache.update_or_create(
                 local_file_id=fairy_tail_path,
                 tg_file_id=audio_message.audio.file_id
