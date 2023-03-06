@@ -3,7 +3,7 @@ from magic_filter import F
 
 from keyboards import MenuCallbackFactory
 from db.models import FairyTailCache, FairyTailStat, ImageCache
-from bot.utils import get_content_from_folder
+from botsource.utils import get_content_from_folder
 
 
 router = Router()

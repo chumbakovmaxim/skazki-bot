@@ -1,8 +1,10 @@
 import db.database as db
-from aiogram import Bot, Dispatcher
 
 
-async def shutdown(dispatcher: Dispatcher, *bots: Bot, bot: Bot):
+async def shutdown() -> None:
+    """
+    Закрытие базы данных
+    """
     print("Shutdown started")
     # Shutdown code here
     await db.close()

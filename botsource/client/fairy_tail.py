@@ -1,7 +1,7 @@
 from aiogram import Router, types
 
 import messages as msg
-from bot.utils import get_sub_menu_folders
+from botsource.utils import get_sub_menu_folders
 from keyboards import keyboard_constructor_fairy_tail
 from magic_filter import F
 

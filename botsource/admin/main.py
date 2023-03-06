@@ -7,7 +7,7 @@ import os
 from config import ADMIN_PASSWORD
 from db.models import User
 import messages as msg
-from bot.utils import generate_excel_stat
+from botsource.utils import generate_excel_stat
 
 router = Router()
 

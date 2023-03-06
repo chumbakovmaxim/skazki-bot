@@ -1,11 +1,13 @@
+"""Основной файл"""
+
 import logging
 
 import uvicorn
 
 from aiogram import Bot, Dispatcher
 
-import bot as botsource
-import config as cnf
+import botsource
+import config
 import setup
 
 from config import WEBHOOK_URL
@@ -13,7 +15,7 @@ from db.database import init as db_init
 
 dp = Dispatcher()
 
-bot = Bot(cnf.TOKEN, parse_mode="HTML")
+bot = Bot(config.TOKEN, parse_mode="HTML")
 
 
 async def set_webhook() -> None:

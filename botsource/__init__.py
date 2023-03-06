@@ -1,6 +1,7 @@
 from aiogram import Router
-from bot.client import start, menu, sub_menu, fairy_tail, info, audio
-from bot.admin import main as admin
+from botsource.client import start, menu, sub_menu, fairy_tail, info, audio
+from botsource.admin import main as admin
+from botsource import utils
 
 router = Router()
 router.include_router(start.router)

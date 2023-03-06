@@ -1,8 +1,9 @@
 import db.database as db
-import db.models as models
-from aiogram import Bot, Dispatcher
 
-async def startup(dispatcher: Dispatcher, *bots: Bot, bot: Bot):
+async def startup() -> None:
+    """
+    Запуск функций для подключения к БД
+    """
     print("Init started")
     # Init code here
     await db.migrate()

@@ -1,3 +1,5 @@
+"""Описание типов"""
+
 import typing
 from aiogram.types import FSInputFile
 

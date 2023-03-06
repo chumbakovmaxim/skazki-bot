@@ -5,7 +5,7 @@ from keyboards import keyboard_constructor_sub_menu
 from magic_filter import F
 
 from keyboards import MenuCallbackFactory
-from bot.utils import get_sub_menu_folders
+from botsource.utils import get_sub_menu_folders
 from db.models import MenuStat
 
 router = Router()

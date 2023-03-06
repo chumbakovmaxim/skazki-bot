@@ -4,7 +4,7 @@ from aiogram.filters import Command, Text
 import messages as msg
 from keyboards import start_keyboard
 
-from bot.utils import get_menu_folders, get_folders_tree, get_folder_stat
+from botsource.utils import get_menu_folders
 from db.models import User
 
 router = Router()
@@ -36,3 +36,12 @@ async def command_start_handler(
     )
     if isinstance(message, types.CallbackQuery):
         await message.message.delete()
+
+
+@router.message()
+async def any_message(message: types.Message):
+    """
+    Обработка любого текстового сообщения
+    :param message: types.Message
+    """
+    await message.answer('Я не знаю как на это ответить, воспользуйтесь командой /start')
