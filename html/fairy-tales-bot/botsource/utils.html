@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>botsource.utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>botsource.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+from pypika.terms import Parameter, Interval
+import xlsxwriter
+
+from aiogram.types import FSInputFile
+from tg_types import ButtonsData, Media, Stat
+from db.models import MenuStat, SubMenuStat, FairyTailStat, User
+
+
+def decode_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Расшифровывает строку типа /000/000/000 в полноценный путь ./Сказки/000Семья/000Дети/000Дело не в точках
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+
+    root_path = &#39;./Сказки&#39;
+    path_array = path[1:].split(&#39;/&#39;)
+    for path_piece in path_array:
+        for folder_name in os.listdir(root_path):
+            if folder_name[:3] == path_piece:
+                root_path += f&#39;/{folder_name}&#39;
+
+    return root_path
+
+
+def encrypt_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Превращает путь вида
+    &#39;./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот&#39;
+    в закодированный путь
+    /004/000/001
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+    path = path.split(&#39;/&#39;)[2:]
+    for index, item in enumerate(path):
+        path[index] = item[:3]
+    path = &#39;/&#39;.join(path)
+    path = &#39;/&#39; + path
+
+    return path
+
+
+def get_name_from_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Возращает имя папки из пути
+    ./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот
+            =&gt;
+    Обыкновенный блокнот
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+    return path.split(&#39;/&#39;)[-1:][0][3:]
+
+
+def get_menu_folders() -&gt; list[ButtonsData]:
+    &#34;&#34;&#34;
+    Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в &#39;./Сказки&#39;
+    :return: list[ButtonsData]
+    &#34;&#34;&#34;
+    data: list[ButtonsData] = []
+    root_path = &#39;./Сказки&#39;
+    # toDo Вынести путь в переменную
+    dirs = os.listdir(root_path)
+    dirs.sort()
+    for filename in dirs:
+        if filename[:1] != &#39;.&#39;:
+            data.append({
+                &#39;text&#39;: filename[3:],
+                &#39;path&#39;: f&#39;/{filename[:3]}&#39;
+            })
+
+    return data
+
+
+def get_sub_menu_folders(path: str) -&gt; list[ButtonsData]:
+    &#34;&#34;&#34;
+       Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в &#39;./Сказки/.../&#39;
+       :param path: str
+       :return: list[ButtonsData]
+    &#34;&#34;&#34;
+    data: list[ButtonsData] = []
+    for filename in os.listdir(decode_path(path)):
+        data.append({
+            &#39;text&#39;: filename[3:],
+            &#39;path&#39;: f&#39;{path}/{filename[:3]}&#39;
+        })
+
+    return data
+
+
+def get_content_from_folder(path: str) -&gt; Media:
+    &#34;&#34;&#34;
+    Выводит изображение, описание сказки и аудиофайл со сказкой в формате Media.
+    :param path: str
+    :return: Media
+    &#34;&#34;&#34;
+    result = {
+        &#39;audio&#39;: &#39;&#39;,
+        &#39;description&#39;: &#39;&#39;,
+        &#39;photo&#39;: &#39;&#39;,
+    }
+
+    path = decode_path(path)
+    for file in os.listdir(path):
+        if file[-3:] == &#39;mp3&#39;:
+            result[&#39;audio&#39;] = FSInputFile(path=path + &#39;/&#39; + file, filename=file[:-4])
+        if file[-3:] == &#39;txt&#39;:
+            with open(path + &#39;/&#39; + file) as f:
+                result[&#39;description&#39;] = f.read()
+        if file[-3:] == &#39;jpg&#39;:
+            result[&#39;photo&#39;] = FSInputFile(path=path + &#39;/&#39; + file)
+
+    return result
+
+
+def get_folders_tree(root_path: str = &#39;./Сказки&#39;) -&gt; list[str]:
+    &#34;&#34;&#34;
+    Возращает список закодированных путей
+    [&#39;/001&#39;, &#39;/001/003&#39;, &#39;/001/003/001&#39;, &#39;/001/003/004&#39;, &#39;/001/003/000&#39;, ... ]
+    :param root_path: str
+    :return: list[str]
+    &#34;&#34;&#34;
+    result = []
+    for filename in os.listdir(root_path):
+        path = f&#39;{root_path}/{filename}&#39;
+        if filename[:1] != &#39;.&#39; and os.path.isdir(path):
+            result.append(encrypt_path(path))
+            sub_folders = get_folders_tree(path)
+            result += sub_folders
+
+    return result
+
+
+async def get_folder_stat() -&gt; Stat:
+    &#34;&#34;&#34;
+    Получение статистики по папкам (кол-во нажатий)
+    :return: Stat
+    &#34;&#34;&#34;
+    stat: Stat = {&#39;menu&#39;: {}, &#39;sub_menu&#39;: {}, &#39;fairy_tail&#39;: {}}
+    folders_names = get_folders_tree()
+    for folder_name in folders_names:
+        if len(folder_name) == 4:
+            menu_stat = (await MenuStat.all().filter(path=folder_name))
+            for menu_item in menu_stat:
+                name = get_name_from_path(decode_path(menu_item.path))
+                if name not in stat[&#39;menu&#39;].keys():
+                    stat[&#39;menu&#39;][name] = 1
+                else:
+                    stat[&#39;menu&#39;][name] += 1
+            if len(menu_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;menu&#39;][name] = 0
+
+        if len(folder_name) == 8:
+            sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
+            for sub_menu_item in sub_menu_stat:
+                name = get_name_from_path(decode_path(sub_menu_item.path))
+                if name not in stat[&#39;sub_menu&#39;].keys():
+                    stat[&#39;sub_menu&#39;][name] = 1
+                else:
+                    stat[&#39;sub_menu&#39;][name] += 1
+            if len(sub_menu_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;sub_menu&#39;][name] = 0
+
+        if len(folder_name) == 12:
+            fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
+            for fairy_tail_item in fairy_tail_stat:
+                name = get_name_from_path(decode_path(fairy_tail_item.path))
+                if name not in stat[&#39;fairy_tail&#39;].keys():
+                    stat[&#39;fairy_tail&#39;][name] = 1
+                else:
+                    stat[&#39;fairy_tail&#39;][name] += 1
+            if len(fairy_tail_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;fairy_tail&#39;][name] = 0
+
+    return stat
+
+
+async def get_users_count() -&gt; int:
+    &#34;&#34;&#34;
+    Получение кол-ва ползователей
+    :return: int
+    &#34;&#34;&#34;
+    users_count = await User.all().count()
+    return users_count
+
+
+async def get_active_users_count() -&gt; dict[str, int]:
+    &#34;&#34;&#34;
+    Получение кол-ва активных пользователей за неделю и за день
+    :return: dict[str, int]
+    &#34;&#34;&#34;
+    result = {&#39;per_day&#39;: 0, &#39;per_week&#39;: 0}
+    active_users_per_day = await User.filter(activity_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=1)).count()
+    active_users_per_week = await User.filter(activity_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=7)).count()
+
+    result[&#39;per_day&#39;] = active_users_per_day
+    result[&#39;per_week&#39;] = active_users_per_week
+    return result
+
+
+async def get_content_rating() -&gt; []:
+    &#34;&#34;&#34;
+    Получение кол-ва кликов по сказкам
+    :return: []
+    &#34;&#34;&#34;
+    result = []
+    folders = get_folders_tree()
+    fairy_tails_folders = [x for x in folders if len(x) == 12]
+    for fairy_tail in fairy_tails_folders:
+        name = get_name_from_path(decode_path(fairy_tail))
+        fairy_tails_per_day_count = await FairyTailStat.filter(
+            interaction_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=1)).filter(path=fairy_tail).count()
+        fairy_tails_per_week_count = await FairyTailStat.filter(
+            interaction_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=7)).filter(path=fairy_tail).count()
+
+        result.append({
+            &#39;name&#39;: name,
+            &#39;per_day&#39;: fairy_tails_per_day_count,
+            &#39;per_week&#39;: fairy_tails_per_week_count
+        })
+
+    return result
+
+
+async def generate_excel_stat() -&gt; None:
+    &#34;&#34;&#34;
+    Генерация excel файла со статистикой
+    :return: None
+    &#34;&#34;&#34;
+    workbook = xlsxwriter.Workbook(&#39;stat.xlsx&#39;)
+    cell_format = workbook.add_format()
+    cell_format.set_text_wrap(True)
+
+    sheet_count = workbook.add_worksheet(&#34;Общее кол-во пользователей&#34;)
+    sheet_count.set_column(0, 1, 15)
+    sheet_interaction_count = workbook.add_worksheet(&#34;Кол-во запусков контента&#34;)
+    sheet_interaction_count.set_column(0, 2, 15)
+    sheet_rating = workbook.add_worksheet(&#34;Рейтинг&#34;)
+    sheet_rating.set_column(0, 5, 15)
+
+    users_count = await get_users_count()
+    sheet_count.write(0, 0, &#39;Общее кол-во пользователей&#39;, cell_format)
+    sheet_count.write(0, 1, users_count, cell_format)
+
+    active_users = await get_active_users_count()
+    sheet_count.write(1, 0, &#39;Кол-во активных пользователей за день&#39;, cell_format)
+    sheet_count.write(1, 1, active_users[&#39;per_day&#39;], cell_format)
+    sheet_count.write(2, 0, &#39;Кол-во активных пользователей за неделю&#39;, cell_format)
+    sheet_count.write(2, 1, active_users[&#39;per_week&#39;], cell_format)
+
+    content_rating = await get_content_rating()
+    sheet_interaction_count.write(0, 1, &#39;За день&#39;, cell_format)
+    sheet_interaction_count.write(0, 2, &#39;За неделю&#39;, cell_format)
+    for index, item in enumerate(content_rating):
+        sheet_interaction_count.write(index + 1, 0, item[&#39;name&#39;], cell_format)
+        sheet_interaction_count.write(index + 1, 1, item[&#39;per_day&#39;], cell_format)
+        sheet_interaction_count.write(index + 1, 2, item[&#39;per_week&#39;], cell_format)
+
+    folders_stat = await get_folder_stat()
+    sheet_rating.write(0, 0, &#39;Проблема&#39;, cell_format)
+    sheet_rating.write(0, 1, &#39;Кол-во обращений&#39;, cell_format)
+    sheet_rating.write(0, 2, &#39;Проблема&#39;, cell_format)
+    sheet_rating.write(0, 3, &#39;Кол-во обращений&#39;, cell_format)
+    sheet_rating.write(0, 4, &#39;Сказка&#39;, cell_format)
+    sheet_rating.write(0, 5, &#39;Кол-во обращений&#39;, cell_format)
+
+    for index, menu_item in enumerate(folders_stat[&#39;menu&#39;]):
+        sheet_rating.write(index + 1, 0, menu_item, cell_format)
+        sheet_rating.write(index + 1, 1, folders_stat[&#39;menu&#39;][menu_item], cell_format)
+
+    for index, sub_menu_item in enumerate(folders_stat[&#39;sub_menu&#39;]):
+        sheet_rating.write(index + 1, 2, sub_menu_item, cell_format)
+        sheet_rating.write(index + 1, 3, folders_stat[&#39;sub_menu&#39;][sub_menu_item], cell_format)
+
+    for index, fairy_tail_item in enumerate(folders_stat[&#39;fairy_tail&#39;]):
+        sheet_rating.write(index + 1, 4, fairy_tail_item, cell_format)
+        sheet_rating.write(index + 1, 5, folders_stat[&#39;fairy_tail&#39;][fairy_tail_item], cell_format)
+
+    workbook.close()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="botsource.utils.decode_path"><code class="name flex">
+<span>def <span class="ident">decode_path</span></span>(<span>path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Расшифровывает строку типа /000/000/000 в полноценный путь ./Сказки/000Семья/000Дети/000Дело не в точках
+:param path: str
+:return: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def decode_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Расшифровывает строку типа /000/000/000 в полноценный путь ./Сказки/000Семья/000Дети/000Дело не в точках
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+
+    root_path = &#39;./Сказки&#39;
+    path_array = path[1:].split(&#39;/&#39;)
+    for path_piece in path_array:
+        for folder_name in os.listdir(root_path):
+            if folder_name[:3] == path_piece:
+                root_path += f&#39;/{folder_name}&#39;
+
+    return root_path</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.encrypt_path"><code class="name flex">
+<span>def <span class="ident">encrypt_path</span></span>(<span>path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Превращает путь вида
+'./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот'
+в закодированный путь
+/004/000/001
+:param path: str
+:return: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def encrypt_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Превращает путь вида
+    &#39;./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот&#39;
+    в закодированный путь
+    /004/000/001
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+    path = path.split(&#39;/&#39;)[2:]
+    for index, item in enumerate(path):
+        path[index] = item[:3]
+    path = &#39;/&#39;.join(path)
+    path = &#39;/&#39; + path
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.generate_excel_stat"><code class="name flex">
+<span>async def <span class="ident">generate_excel_stat</span></span>(<span>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Генерация excel файла со статистикой
+:return: None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def generate_excel_stat() -&gt; None:
+    &#34;&#34;&#34;
+    Генерация excel файла со статистикой
+    :return: None
+    &#34;&#34;&#34;
+    workbook = xlsxwriter.Workbook(&#39;stat.xlsx&#39;)
+    cell_format = workbook.add_format()
+    cell_format.set_text_wrap(True)
+
+    sheet_count = workbook.add_worksheet(&#34;Общее кол-во пользователей&#34;)
+    sheet_count.set_column(0, 1, 15)
+    sheet_interaction_count = workbook.add_worksheet(&#34;Кол-во запусков контента&#34;)
+    sheet_interaction_count.set_column(0, 2, 15)
+    sheet_rating = workbook.add_worksheet(&#34;Рейтинг&#34;)
+    sheet_rating.set_column(0, 5, 15)
+
+    users_count = await get_users_count()
+    sheet_count.write(0, 0, &#39;Общее кол-во пользователей&#39;, cell_format)
+    sheet_count.write(0, 1, users_count, cell_format)
+
+    active_users = await get_active_users_count()
+    sheet_count.write(1, 0, &#39;Кол-во активных пользователей за день&#39;, cell_format)
+    sheet_count.write(1, 1, active_users[&#39;per_day&#39;], cell_format)
+    sheet_count.write(2, 0, &#39;Кол-во активных пользователей за неделю&#39;, cell_format)
+    sheet_count.write(2, 1, active_users[&#39;per_week&#39;], cell_format)
+
+    content_rating = await get_content_rating()
+    sheet_interaction_count.write(0, 1, &#39;За день&#39;, cell_format)
+    sheet_interaction_count.write(0, 2, &#39;За неделю&#39;, cell_format)
+    for index, item in enumerate(content_rating):
+        sheet_interaction_count.write(index + 1, 0, item[&#39;name&#39;], cell_format)
+        sheet_interaction_count.write(index + 1, 1, item[&#39;per_day&#39;], cell_format)
+        sheet_interaction_count.write(index + 1, 2, item[&#39;per_week&#39;], cell_format)
+
+    folders_stat = await get_folder_stat()
+    sheet_rating.write(0, 0, &#39;Проблема&#39;, cell_format)
+    sheet_rating.write(0, 1, &#39;Кол-во обращений&#39;, cell_format)
+    sheet_rating.write(0, 2, &#39;Проблема&#39;, cell_format)
+    sheet_rating.write(0, 3, &#39;Кол-во обращений&#39;, cell_format)
+    sheet_rating.write(0, 4, &#39;Сказка&#39;, cell_format)
+    sheet_rating.write(0, 5, &#39;Кол-во обращений&#39;, cell_format)
+
+    for index, menu_item in enumerate(folders_stat[&#39;menu&#39;]):
+        sheet_rating.write(index + 1, 0, menu_item, cell_format)
+        sheet_rating.write(index + 1, 1, folders_stat[&#39;menu&#39;][menu_item], cell_format)
+
+    for index, sub_menu_item in enumerate(folders_stat[&#39;sub_menu&#39;]):
+        sheet_rating.write(index + 1, 2, sub_menu_item, cell_format)
+        sheet_rating.write(index + 1, 3, folders_stat[&#39;sub_menu&#39;][sub_menu_item], cell_format)
+
+    for index, fairy_tail_item in enumerate(folders_stat[&#39;fairy_tail&#39;]):
+        sheet_rating.write(index + 1, 4, fairy_tail_item, cell_format)
+        sheet_rating.write(index + 1, 5, folders_stat[&#39;fairy_tail&#39;][fairy_tail_item], cell_format)
+
+    workbook.close()</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_active_users_count"><code class="name flex">
+<span>async def <span class="ident">get_active_users_count</span></span>(<span>) ‑> dict[str, int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Получение кол-ва активных пользователей за неделю и за день
+:return: dict[str, int]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def get_active_users_count() -&gt; dict[str, int]:
+    &#34;&#34;&#34;
+    Получение кол-ва активных пользователей за неделю и за день
+    :return: dict[str, int]
+    &#34;&#34;&#34;
+    result = {&#39;per_day&#39;: 0, &#39;per_week&#39;: 0}
+    active_users_per_day = await User.filter(activity_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=1)).count()
+    active_users_per_week = await User.filter(activity_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=7)).count()
+
+    result[&#39;per_day&#39;] = active_users_per_day
+    result[&#39;per_week&#39;] = active_users_per_week
+    return result</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_content_from_folder"><code class="name flex">
+<span>def <span class="ident">get_content_from_folder</span></span>(<span>path: str) ‑> tg_types.Media</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Выводит изображение, описание сказки и аудиофайл со сказкой в формате Media.
+:param path: str
+:return: Media</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_content_from_folder(path: str) -&gt; Media:
+    &#34;&#34;&#34;
+    Выводит изображение, описание сказки и аудиофайл со сказкой в формате Media.
+    :param path: str
+    :return: Media
+    &#34;&#34;&#34;
+    result = {
+        &#39;audio&#39;: &#39;&#39;,
+        &#39;description&#39;: &#39;&#39;,
+        &#39;photo&#39;: &#39;&#39;,
+    }
+
+    path = decode_path(path)
+    for file in os.listdir(path):
+        if file[-3:] == &#39;mp3&#39;:
+            result[&#39;audio&#39;] = FSInputFile(path=path + &#39;/&#39; + file, filename=file[:-4])
+        if file[-3:] == &#39;txt&#39;:
+            with open(path + &#39;/&#39; + file) as f:
+                result[&#39;description&#39;] = f.read()
+        if file[-3:] == &#39;jpg&#39;:
+            result[&#39;photo&#39;] = FSInputFile(path=path + &#39;/&#39; + file)
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_content_rating"><code class="name flex">
+<span>async def <span class="ident">get_content_rating</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Получение кол-ва кликов по сказкам
+:return: []</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def get_content_rating() -&gt; []:
+    &#34;&#34;&#34;
+    Получение кол-ва кликов по сказкам
+    :return: []
+    &#34;&#34;&#34;
+    result = []
+    folders = get_folders_tree()
+    fairy_tails_folders = [x for x in folders if len(x) == 12]
+    for fairy_tail in fairy_tails_folders:
+        name = get_name_from_path(decode_path(fairy_tail))
+        fairy_tails_per_day_count = await FairyTailStat.filter(
+            interaction_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=1)).filter(path=fairy_tail).count()
+        fairy_tails_per_week_count = await FairyTailStat.filter(
+            interaction_time__gte=Parameter(&#34;CURRENT_DATE&#34;) - Interval(days=7)).filter(path=fairy_tail).count()
+
+        result.append({
+            &#39;name&#39;: name,
+            &#39;per_day&#39;: fairy_tails_per_day_count,
+            &#39;per_week&#39;: fairy_tails_per_week_count
+        })
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_folder_stat"><code class="name flex">
+<span>async def <span class="ident">get_folder_stat</span></span>(<span>) ‑> tg_types.Stat</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Получение статистики по папкам (кол-во нажатий)
+:return: Stat</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def get_folder_stat() -&gt; Stat:
+    &#34;&#34;&#34;
+    Получение статистики по папкам (кол-во нажатий)
+    :return: Stat
+    &#34;&#34;&#34;
+    stat: Stat = {&#39;menu&#39;: {}, &#39;sub_menu&#39;: {}, &#39;fairy_tail&#39;: {}}
+    folders_names = get_folders_tree()
+    for folder_name in folders_names:
+        if len(folder_name) == 4:
+            menu_stat = (await MenuStat.all().filter(path=folder_name))
+            for menu_item in menu_stat:
+                name = get_name_from_path(decode_path(menu_item.path))
+                if name not in stat[&#39;menu&#39;].keys():
+                    stat[&#39;menu&#39;][name] = 1
+                else:
+                    stat[&#39;menu&#39;][name] += 1
+            if len(menu_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;menu&#39;][name] = 0
+
+        if len(folder_name) == 8:
+            sub_menu_stat = (await SubMenuStat.all().filter(path=folder_name))
+            for sub_menu_item in sub_menu_stat:
+                name = get_name_from_path(decode_path(sub_menu_item.path))
+                if name not in stat[&#39;sub_menu&#39;].keys():
+                    stat[&#39;sub_menu&#39;][name] = 1
+                else:
+                    stat[&#39;sub_menu&#39;][name] += 1
+            if len(sub_menu_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;sub_menu&#39;][name] = 0
+
+        if len(folder_name) == 12:
+            fairy_tail_stat = (await FairyTailStat.all().filter(path=folder_name))
+            for fairy_tail_item in fairy_tail_stat:
+                name = get_name_from_path(decode_path(fairy_tail_item.path))
+                if name not in stat[&#39;fairy_tail&#39;].keys():
+                    stat[&#39;fairy_tail&#39;][name] = 1
+                else:
+                    stat[&#39;fairy_tail&#39;][name] += 1
+            if len(fairy_tail_stat) == 0:
+                name = get_name_from_path(decode_path(folder_name))
+                stat[&#39;fairy_tail&#39;][name] = 0
+
+    return stat</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_folders_tree"><code class="name flex">
+<span>def <span class="ident">get_folders_tree</span></span>(<span>root_path: str = './Сказки') ‑> list[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Возращает список закодированных путей
+['/001', '/001/003', '/001/003/001', '/001/003/004', '/001/003/000', &hellip; ]
+:param root_path: str
+:return: list[str]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_folders_tree(root_path: str = &#39;./Сказки&#39;) -&gt; list[str]:
+    &#34;&#34;&#34;
+    Возращает список закодированных путей
+    [&#39;/001&#39;, &#39;/001/003&#39;, &#39;/001/003/001&#39;, &#39;/001/003/004&#39;, &#39;/001/003/000&#39;, ... ]
+    :param root_path: str
+    :return: list[str]
+    &#34;&#34;&#34;
+    result = []
+    for filename in os.listdir(root_path):
+        path = f&#39;{root_path}/{filename}&#39;
+        if filename[:1] != &#39;.&#39; and os.path.isdir(path):
+            result.append(encrypt_path(path))
+            sub_folders = get_folders_tree(path)
+            result += sub_folders
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_menu_folders"><code class="name flex">
+<span>def <span class="ident">get_menu_folders</span></span>(<span>) ‑> list[tg_types.ButtonsData]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в './Сказки'
+:return: list[ButtonsData]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_menu_folders() -&gt; list[ButtonsData]:
+    &#34;&#34;&#34;
+    Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в &#39;./Сказки&#39;
+    :return: list[ButtonsData]
+    &#34;&#34;&#34;
+    data: list[ButtonsData] = []
+    root_path = &#39;./Сказки&#39;
+    # toDo Вынести путь в переменную
+    dirs = os.listdir(root_path)
+    dirs.sort()
+    for filename in dirs:
+        if filename[:1] != &#39;.&#39;:
+            data.append({
+                &#39;text&#39;: filename[3:],
+                &#39;path&#39;: f&#39;/{filename[:3]}&#39;
+            })
+
+    return data</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_name_from_path"><code class="name flex">
+<span>def <span class="ident">get_name_from_path</span></span>(<span>path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Возращает имя папки из пути
+./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот
+=&gt;
+Обыкновенный блокнот
+:param path: str
+:return: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_name_from_path(path: str) -&gt; str:
+    &#34;&#34;&#34;
+    Возращает имя папки из пути
+    ./Сказки/007Другие темы/000Взаимопомощь/001Обыкновенный блокнот
+            =&gt;
+    Обыкновенный блокнот
+    :param path: str
+    :return: str
+    &#34;&#34;&#34;
+    return path.split(&#39;/&#39;)[-1:][0][3:]</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_sub_menu_folders"><code class="name flex">
+<span>def <span class="ident">get_sub_menu_folders</span></span>(<span>path: str) ‑> list[tg_types.ButtonsData]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в './Сказки/&hellip;/'
+:param path: str
+:return: list[ButtonsData]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_sub_menu_folders(path: str) -&gt; list[ButtonsData]:
+    &#34;&#34;&#34;
+       Выводит массив типа ByttonsData. ByttonsData.path - папки вложенные в &#39;./Сказки/.../&#39;
+       :param path: str
+       :return: list[ButtonsData]
+    &#34;&#34;&#34;
+    data: list[ButtonsData] = []
+    for filename in os.listdir(decode_path(path)):
+        data.append({
+            &#39;text&#39;: filename[3:],
+            &#39;path&#39;: f&#39;{path}/{filename[:3]}&#39;
+        })
+
+    return data</code></pre>
+</details>
+</dd>
+<dt id="botsource.utils.get_users_count"><code class="name flex">
+<span>async def <span class="ident">get_users_count</span></span>(<span>) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Получение кол-ва ползователей
+:return: int</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def get_users_count() -&gt; int:
+    &#34;&#34;&#34;
+    Получение кол-ва ползователей
+    :return: int
+    &#34;&#34;&#34;
+    users_count = await User.all().count()
+    return users_count</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="botsource" href="index.html">botsource</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="botsource.utils.decode_path" href="#botsource.utils.decode_path">decode_path</a></code></li>
+<li><code><a title="botsource.utils.encrypt_path" href="#botsource.utils.encrypt_path">encrypt_path</a></code></li>
+<li><code><a title="botsource.utils.generate_excel_stat" href="#botsource.utils.generate_excel_stat">generate_excel_stat</a></code></li>
+<li><code><a title="botsource.utils.get_active_users_count" href="#botsource.utils.get_active_users_count">get_active_users_count</a></code></li>
+<li><code><a title="botsource.utils.get_content_from_folder" href="#botsource.utils.get_content_from_folder">get_content_from_folder</a></code></li>
+<li><code><a title="botsource.utils.get_content_rating" href="#botsource.utils.get_content_rating">get_content_rating</a></code></li>
+<li><code><a title="botsource.utils.get_folder_stat" href="#botsource.utils.get_folder_stat">get_folder_stat</a></code></li>
+<li><code><a title="botsource.utils.get_folders_tree" href="#botsource.utils.get_folders_tree">get_folders_tree</a></code></li>
+<li><code><a title="botsource.utils.get_menu_folders" href="#botsource.utils.get_menu_folders">get_menu_folders</a></code></li>
+<li><code><a title="botsource.utils.get_name_from_path" href="#botsource.utils.get_name_from_path">get_name_from_path</a></code></li>
+<li><code><a title="botsource.utils.get_sub_menu_folders" href="#botsource.utils.get_sub_menu_folders">get_sub_menu_folders</a></code></li>
+<li><code><a title="botsource.utils.get_users_count" href="#botsource.utils.get_users_count">get_users_count</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
