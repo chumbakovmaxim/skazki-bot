@@ -31,6 +31,7 @@ async def fairy_tail_handler(
     audio = media['audio']
     description = media['description']
     image = media['photo']
+    audio_name = media['audio_name']
 
     try:
         audio_file = await FairyTailCache.get_or_none(local_file_id=fairy_tail_path)
@@ -56,10 +57,11 @@ async def fairy_tail_handler(
             await bot.send_audio(
                 chat_id=user_id,
                 audio=audio_file.tg_file_id,
-                performer='Сказки для жизни'
+                performer='Сказки для жизни',
+                title=audio_name
             )
         else:
-            audio_message: types.Message = await bot.send_audio(chat_id=user_id, audio=audio)
+            audio_message: types.Message = await bot.send_audio(chat_id=user_id, audio=audio, title=audio_name)
             await FairyTailCache.update_or_create(
                 local_file_id=fairy_tail_path,
                 tg_file_id=audio_message.audio.file_id

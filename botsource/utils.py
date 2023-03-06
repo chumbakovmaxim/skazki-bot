@@ -100,12 +100,14 @@ def get_content_from_folder(path: str) -> Media:
         'audio': '',
         'description': '',
         'photo': '',
+        'audio_name': ''
     }
 
     path = decode_path(path)
     for file in os.listdir(path):
         if file[-3:] == 'mp3':
             result['audio'] = FSInputFile(path=path + '/' + file, filename=file[:-4])
+            result['audio_name'] = file[:-4]
         if file[-3:] == 'txt':
             with open(path + '/' + file) as f:
                 result['description'] = f.read()

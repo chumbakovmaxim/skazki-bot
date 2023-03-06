@@ -13,6 +13,7 @@ class Media(typing.TypedDict):
     audio: str | FSInputFile
     description: str
     photo: str | FSInputFile
+    audio_name: str
 
 
 class Stat(typing.TypedDict):
