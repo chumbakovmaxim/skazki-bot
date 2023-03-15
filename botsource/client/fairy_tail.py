@@ -29,7 +29,7 @@ async def fairy_tail_handler(
     await SubMenuStat.create_record(query.from_user.id, path)
 
     try:
-        await query.message.edit_text(text=msg.fairy_tails_message,
+        await query.message.edit_text(text=msg.fairy_tails_one if len(fairy_tail_path) == 1 else msg.fairy_tails_some,
                                       reply_markup=keyboard_constructor_fairy_tail(fairy_tail_path))
         await query.answer()
     except Exception as e:
