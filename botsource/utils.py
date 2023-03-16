@@ -81,7 +81,9 @@ def get_sub_menu_folders(path: str) -> list[ButtonsData]:
        :return: list[ButtonsData]
     """
     data: list[ButtonsData] = []
-    for filename in os.listdir(decode_path(path)):
+    dirs = os.listdir(decode_path(path))
+    dirs.sort()
+    for filename in dirs:
         data.append({
             'text': filename[3:],
             'path': f'{path}/{filename[:3]}'
